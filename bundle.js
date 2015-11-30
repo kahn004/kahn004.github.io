@@ -1,34 +1,6 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window["webpackJsonp"];
-/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules) {
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, callbacks = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId])
-/******/ 				callbacks.push.apply(callbacks, installedChunks[chunkId]);
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			modules[moduleId] = moreModules[moduleId];
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules);
-/******/ 		while(callbacks.length)
-/******/ 			callbacks.shift().call(null, __webpack_require__);
-
-/******/ 	};
-
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// "0" means "already loaded"
-/******/ 	// Array means "loading", array contains callbacks
-/******/ 	var installedChunks = {
-/******/ 		0:0
-/******/ 	};
 
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -54,29 +26,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId, callback) {
-/******/ 		// "0" is the signal for "already loaded"
-/******/ 		if(installedChunks[chunkId] === 0)
-/******/ 			return callback.call(null, __webpack_require__);
-
-/******/ 		// an array means "currently loading".
-/******/ 		if(installedChunks[chunkId] !== undefined) {
-/******/ 			installedChunks[chunkId].push(callback);
-/******/ 		} else {
-/******/ 			// start chunk loading
-/******/ 			installedChunks[chunkId] = [callback];
-/******/ 			var head = document.getElementsByTagName('head')[0];
-/******/ 			var script = document.createElement('script');
-/******/ 			script.type = 'text/javascript';
-/******/ 			script.charset = 'utf-8';
-/******/ 			script.async = true;
-
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".bundle.js";
-/******/ 			head.appendChild(script);
-/******/ 		}
-/******/ 	};
 
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -109,18 +58,82 @@
 
 	var _reactRouter = __webpack_require__(189);
 
+	var _componentsMain = __webpack_require__(215);
+
+	var _componentsMain2 = _interopRequireDefault(_componentsMain);
+
+	// import Course from './routes/Course/components/Course'
+	// import AnnouncementsSidebar from './routes/Course/routes/Announcements/components/Sidebar'
+	// import Announcements from './routes/Course/routes/Announcements/components/Announcements'
+	// import Announcement from './routes/Course/routes/Announcements/routes/Announcement/components/Announcement'
+	// import AssignmentsSidebar from './routes/Course/routes/Assignments/components/Sidebar'
+	// import Assignments from './routes/Course/routes/Assignments/components/Assignments'
+	// import Assignment from './routes/Course/routes/Assignments/routes/Assignment/components/Assignment'
+	// import CourseGrades from './routes/Course/routes/Grades/components/Grades'
+
+	var _routesCalendarComponentsCalendar = __webpack_require__(216);
+
+	var _routesCalendarComponentsCalendar2 = _interopRequireDefault(_routesCalendarComponentsCalendar);
+
+	// import Grades from './routes/Grades/components/Grades'
+	// import Messages from './routes/Messages/components/Messages'
+
+	// render(
+	//   <Router>
+	//     <Route path="/" component={App}>
+	//       <Route path="calendar" component={Calendar} />
+	//       <Route path="course/:courseId" component={Course}>
+	//         <Route path="announcements" components={{
+	//           sidebar: AnnouncementsSidebar,
+	//           main: Announcements
+	//         }}>
+	//           <Route path=":announcementId" component={Announcement} />
+	//         </Route>
+	//         <Route path="assignments" components={{
+	//           sidebar: AssignmentsSidebar,
+	//           main: Assignments
+	//         }}>
+	//           <Route path=":assignmentId" component={Assignment} />
+	//         </Route>
+	//         <Route path="grades" component={CourseGrades} />
+	//       </Route>
+	//       <Route path="grades" component={Grades} />
+	//       <Route path="messages" component={Messages} />
+	//       <Route path="profile" component={Calendar} />
+	//     </Route>
+	//   </Router>,
+	//   document.getElementById('example')
+	// )
+
 	var history = (0, _history.createHistory)();
 
-	var rootRoute = {
-		component: 'div',
-		childRoutes: [{
-			path: '/',
-			component: __webpack_require__(215),
-			childRoutes: [__webpack_require__(216)]
-		}]
-	};
+	// var rootRoute = {
+	// 	component: 'div',
+	// 	childRoutes: [
+	// 		{
+	// 			path: '/',
+	// 			component: require('./components/Main'),
+	// 			childRoutes: [
+	// 				require('./routes/Calendar')
+	// 			]
+	// 		}
+	// 	]
+	// }
 
-	(0, _reactDom.render)(_react2['default'].createElement(_reactRouter.Router, { history: history, routes: rootRoute }), document.getElementById('example'));
+	// render(
+	// 	<Router history={history} routes={rootRoute} />,
+	// 	document.getElementById('example')
+	// )
+
+	(0, _reactDom.render)(_react2['default'].createElement(
+	  _reactRouter.Router,
+	  { history: history },
+	  _react2['default'].createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: _componentsMain2['default'] },
+	    _react2['default'].createElement(_reactRouter.Route, { path: 'calendar', component: _routesCalendarComponentsCalendar2['default'] })
+	  )
+	), document.getElementById('example'));
 
 /***/ },
 /* 1 */
@@ -25242,14 +25255,60 @@
 
 	'use strict';
 
-	module.exports = {
-		path: 'calendar',
-		getComponent: function getComponent(location, cb) {
-			__webpack_require__.e/* nsure */(1, function (require) {
-				cb(null, __webpack_require__(217));
-			});
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(189);
+
+	var Calendar = (function (_React$Component) {
+		_inherits(Calendar, _React$Component);
+
+		function Calendar() {
+			_classCallCheck(this, Calendar);
+
+			_get(Object.getPrototypeOf(Calendar.prototype), 'constructor', this).apply(this, arguments);
 		}
-	};
+
+		_createClass(Calendar, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement(
+						'h2',
+						null,
+						'Calendar'
+					),
+					_react2['default'].createElement(
+						'p',
+						null,
+						'This is Calendar page.'
+					),
+					_react2['default'].createElement(
+						_reactRouter.Link,
+						{ to: '/' },
+						'Back to home'
+					)
+				);
+			}
+		}]);
+
+		return Calendar;
+	})(_react2['default'].Component);
+
+	module.exports = Calendar;
 
 /***/ }
 /******/ ]);
