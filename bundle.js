@@ -111,10 +111,6 @@
 
 	var history = (0, _history.createHistory)();
 
-	// var history = useBasename(createHistory)({
-	// 	basename: 'lotto'
-	// })
-
 	var rootRoute = {
 		component: 'div',
 		childRoutes: [{
@@ -25249,7 +25245,7 @@
 	module.exports = {
 		path: 'calendar',
 		getComponent: function getComponent(location, cb) {
-			__webpack_require__.e/* nsure */(1/* empty */, function (require) {
+			__webpack_require__.e/* nsure */(1, function (require) {
 				cb(null, __webpack_require__(217));
 			});
 		}
