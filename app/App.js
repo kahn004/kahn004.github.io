@@ -3,72 +3,20 @@ import { render } from 'react-dom'
 import { createHistory } from 'history'
 import { Router, Route, IndexRoute } from 'react-router'
 
-var history = createHistory()
-
-// var rootRoute = {
-// 	component: 'div',
-// 	childRoutes: [
-// 		{
-// 			path: '/',
-// 			component: require('./components/Main'),
-// 			childRoutes: [
-// 				require('./routes/Calendar')
-// 			]
-// 		}
-// 	]
-// }
-
-// render(
-// 	<Router history={history} routes={rootRoute} />,
-// 	document.getElementById('example')
-// )
-
+import Home from './components/Home'
 import Main from './components/Main'
-import Big from './routes/games/Big'
-import Bullseye from './routes/games/Bullseye'
-import InstantKiwi from './routes/games/InstantKiwi'
-import Keno from './routes/games/Keno'
-import PlayThree from './routes/games/PlayThree'
-import Powerball from './routes/games/Powerball'
-import SecondChance from './routes/games/SecondChance'
-// import Course from './routes/Course/components/Course'
-// import AnnouncementsSidebar from './routes/Course/routes/Announcements/components/Sidebar'
-// import Announcements from './routes/Course/routes/Announcements/components/Announcements'
-// import Announcement from './routes/Course/routes/Announcements/routes/Announcement/components/Announcement'
-// import AssignmentsSidebar from './routes/Course/routes/Assignments/components/Sidebar'
-// import Assignments from './routes/Course/routes/Assignments/components/Assignments'
-// import Assignment from './routes/Course/routes/Assignments/routes/Assignment/components/Assignment'
-// import CourseGrades from './routes/Course/routes/Grades/components/Grades'
-// import Calendar from './routes/Calendar/components/Calendar'
-// import Grades from './routes/Grades/components/Grades'
-// import Messages from './routes/Messages/components/Messages'
+import Big from './routes/games/Big/Big'
+import Bullseye from './routes/games/Bullseye/Bullseye'
+import InstantKiwi from './routes/games/InstantKiwi/InstantKiwi'
+import Keno from './routes/games/Keno/Keno'
+import PlayThree from './routes/games/PlayThree/PlayThree'
+import Powerball from './routes/games/Powerball/Powerball'
+import SecondChance from './routes/games/SecondChance/SecondChance'
+import BuyADip from './routes/games/games-play/BuyADip'
+import Favourites from './routes/games/games-play/Favourites'
+import PickYourOwn from './routes/games/games-play/PickYourOwn'
 
-// render(
-//   <Router>
-//     <Route path="/" component={App}>
-//       <Route path="calendar" component={Calendar} />
-//       <Route path="course/:courseId" component={Course}>
-//         <Route path="announcements" components={{
-//           sidebar: AnnouncementsSidebar,
-//           main: Announcements
-//         }}>
-//           <Route path=":announcementId" component={Announcement} />
-//         </Route>
-//         <Route path="assignments" components={{
-//           sidebar: AssignmentsSidebar,
-//           main: Assignments
-//         }}>
-//           <Route path=":assignmentId" component={Assignment} />
-//         </Route>
-//         <Route path="grades" component={CourseGrades} />
-//       </Route>
-//       <Route path="grades" component={Grades} />
-//       <Route path="messages" component={Messages} />
-//       <Route path="profile" component={Calendar} />
-//     </Route>
-//   </Router>,
-//   document.getElementById('example')
-// )
+var history = createHistory()
 
 class App extends React.Component {
 
@@ -82,12 +30,15 @@ class App extends React.Component {
 	}
 }
 
-module.exports = App
-
 render(
 	<Router history={history}>
 		<Route path="/" component={App}>
-			<IndexRoute component={Powerball} />
+      <IndexRoute component={Home} />
+			<Route path="powerball" component={Powerball}>
+        <Route path="buy-a-dip" component={BuyADip} />
+        <Route path="favourites" component={Favourites} />
+        <Route path="pick-your-own" component={PickYourOwn} />
+      </Route>
 			<Route path="big" component={Big} />
 			<Route path="keno" component={Keno} />
 			<Route path="bullseye" component={Bullseye} />
@@ -96,5 +47,5 @@ render(
 			<Route path="secondchance" component={SecondChance} />
 		</Route>
 	</Router>,
-	document.getElementById('example')
+  document.getElementById('example')
 )
