@@ -66,51 +66,51 @@
 
 	var _reactRouter = __webpack_require__(189);
 
-	var _componentsHome = __webpack_require__(227);
+	var _componentsHome = __webpack_require__(215);
 
 	var _componentsHome2 = _interopRequireDefault(_componentsHome);
 
-	var _componentsMain = __webpack_require__(215);
+	var _componentsMain = __webpack_require__(216);
 
 	var _componentsMain2 = _interopRequireDefault(_componentsMain);
 
-	var _routesGamesBigBig = __webpack_require__(217);
+	var _routesGamesBigBig = __webpack_require__(218);
 
 	var _routesGamesBigBig2 = _interopRequireDefault(_routesGamesBigBig);
 
-	var _routesGamesBullseyeBullseye = __webpack_require__(218);
+	var _routesGamesBullseyeBullseye = __webpack_require__(219);
 
 	var _routesGamesBullseyeBullseye2 = _interopRequireDefault(_routesGamesBullseyeBullseye);
 
-	var _routesGamesInstantKiwiInstantKiwi = __webpack_require__(219);
+	var _routesGamesInstantKiwiInstantKiwi = __webpack_require__(220);
 
 	var _routesGamesInstantKiwiInstantKiwi2 = _interopRequireDefault(_routesGamesInstantKiwiInstantKiwi);
 
-	var _routesGamesKenoKeno = __webpack_require__(220);
+	var _routesGamesKenoKeno = __webpack_require__(221);
 
 	var _routesGamesKenoKeno2 = _interopRequireDefault(_routesGamesKenoKeno);
 
-	var _routesGamesPlayThreePlayThree = __webpack_require__(221);
+	var _routesGamesPlayThreePlayThree = __webpack_require__(222);
 
 	var _routesGamesPlayThreePlayThree2 = _interopRequireDefault(_routesGamesPlayThreePlayThree);
 
-	var _routesGamesPowerballPowerball = __webpack_require__(222);
+	var _routesGamesPowerballPowerball = __webpack_require__(223);
 
 	var _routesGamesPowerballPowerball2 = _interopRequireDefault(_routesGamesPowerballPowerball);
 
-	var _routesGamesSecondChanceSecondChance = __webpack_require__(223);
+	var _routesGamesSecondChanceSecondChance = __webpack_require__(224);
 
 	var _routesGamesSecondChanceSecondChance2 = _interopRequireDefault(_routesGamesSecondChanceSecondChance);
 
-	var _routesGamesGamesPlayBuyADip = __webpack_require__(224);
+	var _routesGamesGamesPlayBuyADip = __webpack_require__(225);
 
 	var _routesGamesGamesPlayBuyADip2 = _interopRequireDefault(_routesGamesGamesPlayBuyADip);
 
-	var _routesGamesGamesPlayFavourites = __webpack_require__(225);
+	var _routesGamesGamesPlayFavourites = __webpack_require__(226);
 
 	var _routesGamesGamesPlayFavourites2 = _interopRequireDefault(_routesGamesGamesPlayFavourites);
 
-	var _routesGamesGamesPlayPickYourOwn = __webpack_require__(226);
+	var _routesGamesGamesPlayPickYourOwn = __webpack_require__(227);
 
 	var _routesGamesGamesPlayPickYourOwn2 = _interopRequireDefault(_routesGamesGamesPlayPickYourOwn);
 
@@ -25234,9 +25234,54 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var Home = (function (_React$Component) {
+		_inherits(Home, _React$Component);
+
+		function Home() {
+			_classCallCheck(this, Home);
+
+			_get(Object.getPrototypeOf(Home.prototype), 'constructor', this).apply(this, arguments);
+		}
+
+		_createClass(Home, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'h6',
+					null,
+					'Home contents goes here.'
+				);
+			}
+		}]);
+
+		return Home;
+	})(_react2['default'].Component);
+
+	module.exports = Home;
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var _reactRouter = __webpack_require__(189);
 
-	var _Navigation = __webpack_require__(216);
+	var _Navigation = __webpack_require__(217);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -25313,7 +25358,7 @@
 	module.exports = Main;
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25422,7 +25467,7 @@
 	module.exports = Navigation;
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25469,7 +25514,7 @@
 	module.exports = Big;
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25514,7 +25559,7 @@
 	module.exports = Bullseye;
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25559,7 +25604,7 @@
 	module.exports = InstantKiwi;
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25604,7 +25649,7 @@
 	module.exports = Keno;
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25649,7 +25694,7 @@
 	module.exports = PlayThree;
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25732,7 +25777,7 @@
 	module.exports = Powerball;
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25777,7 +25822,7 @@
 	module.exports = SecondChance;
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25796,22 +25841,57 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(189);
+
 	var BuyADip = (function (_React$Component) {
 		_inherits(BuyADip, _React$Component);
 
-		function BuyADip() {
+		function BuyADip(props) {
 			_classCallCheck(this, BuyADip);
 
-			_get(Object.getPrototypeOf(BuyADip.prototype), 'constructor', this).apply(this, arguments);
+			_get(Object.getPrototypeOf(BuyADip.prototype), 'constructor', this).call(this, props);
+
+			this.updatePhase = this.updatePhase.bind(this);
+
+			this.state = {
+				phase: 1
+			};
 		}
 
 		_createClass(BuyADip, [{
+			key: 'updatePhase',
+			value: function updatePhase() {
+				this.setState({
+					phase: this.state.phase++
+				});
+				console.log('update phase', this.state.phase);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2['default'].createElement(
-					'h5',
+					'div',
 					null,
-					'BuyADip'
+					_react2['default'].createElement(
+						'h5',
+						null,
+						'Buy a dip'
+					),
+					_react2['default'].createElement(
+						'p',
+						null,
+						'A dip is a random selection of numbers. The dip types give you options to play the different games: Lotto, Powerball and Strike. You can now play on Wednesdays and Saturdays.'
+					),
+					_react2['default'].createElement(
+						'blockquote',
+						null,
+						'Screen #1'
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button', onClick: this.updatePhase },
+						'Buy now'
+					)
 				);
 			}
 		}]);
@@ -25822,7 +25902,7 @@
 	module.exports = BuyADip;
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25867,7 +25947,7 @@
 	module.exports = Favourites;
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25910,51 +25990,6 @@
 	})(_react2['default'].Component);
 
 	module.exports = PickYourOwn;
-
-/***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var Home = (function (_React$Component) {
-		_inherits(Home, _React$Component);
-
-		function Home() {
-			_classCallCheck(this, Home);
-
-			_get(Object.getPrototypeOf(Home.prototype), 'constructor', this).apply(this, arguments);
-		}
-
-		_createClass(Home, [{
-			key: 'render',
-			value: function render() {
-				return _react2['default'].createElement(
-					'h6',
-					null,
-					'Home contents goes here.'
-				);
-			}
-		}]);
-
-		return Home;
-	})(_react2['default'].Component);
-
-	module.exports = Home;
 
 /***/ }
 /******/ ]);
