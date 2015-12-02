@@ -25382,10 +25382,12 @@
 	var Navigation = (function (_React$Component) {
 		_inherits(Navigation, _React$Component);
 
-		function Navigation() {
+		function Navigation(props) {
 			_classCallCheck(this, Navigation);
 
-			_get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).apply(this, arguments);
+			_get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).call(this, props);
+
+			this.activeLink = { color: 'red' };
 		}
 
 		_createClass(Navigation, [{
@@ -25399,7 +25401,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/powerball' },
+							{ to: '/powerball', activeStyle: this.activeLink },
 							'Powerball'
 						)
 					),
@@ -25408,7 +25410,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/big' },
+							{ to: '/big', activeStyle: this.activeLink },
 							'Big'
 						)
 					),
@@ -25417,7 +25419,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/keno' },
+							{ to: '/keno', activeStyle: this.activeLink },
 							'Keno'
 						)
 					),
@@ -25426,7 +25428,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/bullseye' },
+							{ to: '/bullseye', activeStyle: this.activeLink },
 							'Bullseye'
 						)
 					),
@@ -25435,7 +25437,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/playthree' },
+							{ to: '/playthree', activeStyle: this.activeLink },
 							'Play 3'
 						)
 					),
@@ -25444,7 +25446,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/instantkiwi' },
+							{ to: '/instantkiwi', activeStyle: this.activeLink },
 							'InstantKiwi'
 						)
 					),
@@ -25453,7 +25455,7 @@
 						null,
 						_react2['default'].createElement(
 							_reactRouter.Link,
-							{ to: '/secondchance' },
+							{ to: '/secondchance', activeStyle: this.activeLink },
 							'2ndChance'
 						)
 					)

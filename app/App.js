@@ -33,12 +33,12 @@ class App extends React.Component {
 render(
 	<Router history={history}>
 		<Route path="/" component={App}>
-      <IndexRoute component={Home} />
+      		<IndexRoute component={Home} />
 			<Route path="powerball" component={Powerball}>
-        <Route path="buy-a-dip" component={BuyADip} />
-        <Route path="favourites" component={Favourites} />
-        <Route path="pick-your-own" component={PickYourOwn} />
-      </Route>
+		        <Route path="buy-a-dip" component={BuyADip} />
+		        <Route path="favourites" component={Favourites} />
+		        <Route path="pick-your-own" component={PickYourOwn} />
+		    </Route>
 			<Route path="big" component={Big} />
 			<Route path="keno" component={Keno} />
 			<Route path="bullseye" component={Bullseye} />
