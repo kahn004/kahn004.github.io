@@ -25851,24 +25851,35 @@
 
 			_get(Object.getPrototypeOf(BuyADip.prototype), 'constructor', this).call(this, props);
 
-			this.updatePhase = this.updatePhase.bind(this);
+			this.updateStatus = this.updateStatus.bind(this);
+			this.renderGame = this.renderGame.bind(this);
+			this.renderResult = this.renderResult.bind(this);
 
 			this.state = {
-				phase: 1
+				gameMode: true
 			};
 		}
 
 		_createClass(BuyADip, [{
-			key: 'updatePhase',
-			value: function updatePhase() {
-				this.setState({
-					phase: this.state.phase++
-				});
-				console.log('update phase', this.state.phase);
-			}
-		}, {
 			key: 'render',
 			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					null,
+					this.state.gameMode ? this.renderGame() : this.renderResult()
+				);
+			}
+		}, {
+			key: 'updateStatus',
+			value: function updateStatus() {
+				this.setState({
+					gameMode: !this.state.gameMode
+				});
+			}
+		}, {
+			key: 'renderGame',
+			value: function renderGame() {
+
 				return _react2['default'].createElement(
 					'div',
 					null,
@@ -25883,14 +25894,28 @@
 						'A dip is a random selection of numbers. The dip types give you options to play the different games: Lotto, Powerball and Strike. You can now play on Wednesdays and Saturdays.'
 					),
 					_react2['default'].createElement(
-						'blockquote',
+						'button',
+						{ className: 'button', onClick: this.updateStatus },
+						'Buy now'
+					)
+				);
+			}
+		}, {
+			key: 'renderResult',
+			value: function renderResult() {
+
+				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement(
+						'h5',
 						null,
-						'Screen #1'
+						'Result'
 					),
 					_react2['default'].createElement(
 						'button',
-						{ className: 'button', onClick: this.updatePhase },
-						'Buy now'
+						{ className: 'button', onClick: this.updateStatus },
+						'Back'
 					)
 				);
 			}

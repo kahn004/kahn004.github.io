@@ -6,29 +6,48 @@ class BuyADip extends React.Component {
 	constructor (props) {
 		super(props)
 
-		this.updatePhase = this.updatePhase.bind(this)
+		this.updateStatus = this.updateStatus.bind(this)
+		this.renderGame = this.renderGame.bind(this)
+		this.renderResult = this.renderResult.bind(this)
 
 		this.state = {
-			phase: 1
+			gameMode: true
 		}
 	}
 
-	updatePhase () {
-		this.setState({
-			phase: this.state.phase++
-		})
-		console.log('update phase', this.state.phase);
+	render () {
+		return (
+			<div>
+				{ this.state.gameMode ? this.renderGame() : this.renderResult() }
+			</div>
+		)
 	}
 
-	render () {
+	updateStatus () {
+		this.setState({
+			gameMode: !(this.state.gameMode)
+		})
+	}
+
+	renderGame () {
+
 		return (
 			<div>
 				<h5>Buy a dip</h5>
 				<p>
 					A dip is a random selection of numbers. The dip types give you options to play the different games: Lotto, Powerball and Strike. You can now play on Wednesdays and Saturdays.
 				</p>
-				<blockquote>Screen #1</blockquote>
-				<button className="button" onClick={this.updatePhase}>Buy now</button>
+				<button className="button" onClick={this.updateStatus}>Buy now</button>
+			</div>
+		)
+	}
+
+	renderResult () {
+
+		return (
+			<div>
+				<h5>Result</h5>
+				<button className="button" onClick={this.updateStatus}>Back</button>
 			</div>
 		)
 	}
