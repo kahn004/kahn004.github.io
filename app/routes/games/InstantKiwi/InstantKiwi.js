@@ -8,4 +8,4 @@ class InstantKiwi extends React.Component {
 	}
 }
 
-module.exports = InstantKiwi
+export default InstantKiwi

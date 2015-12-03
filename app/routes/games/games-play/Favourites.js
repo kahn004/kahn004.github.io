@@ -9,4 +9,4 @@ class Favourites extends React.Component {
 	}
 }
 
-module.exports = Favourites
+export default Favourites

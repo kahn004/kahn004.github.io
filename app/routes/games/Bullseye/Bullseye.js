@@ -8,4 +8,4 @@ class Bullseye extends React.Component {
 	}
 }
 
-module.exports = Bullseye
+export default Bullseye

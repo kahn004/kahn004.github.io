@@ -18,4 +18,4 @@ class Powerball extends React.Component {
 	}
 }
 
-module.exports = Powerball
+export default Powerball

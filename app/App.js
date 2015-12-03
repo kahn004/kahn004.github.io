@@ -2,6 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createHistory } from 'history'
 import { Router, Route, IndexRoute } from 'react-router'
+import { AltContainer } from 'alt'
+
+// import MyLottoActions from './actions/MyLottoActions'
+// import MyLottoStore from './stores/MyLottoStore'
 
 import Home from './components/Home'
 import Main from './components/Main'
@@ -23,11 +27,23 @@ class App extends React.Component {
 	render () {
 		return (
 			<div className="row">
-				<Main />
+				<Main onEdit={this.editUser} onDelete={this.deleteUser} />
 				{ this.props.children }
 			</div>
 		)
 	}
+
+	// addUser () {
+	// 	MyLottoActions.create({name: 'New user'})
+	// }
+
+	// editUser (id, balance) {
+	// 	MyLottoActions.update({id, balance})
+	// }
+
+	// deleteUser (id) {
+	// 	MyLottoActions.detele(id)
+	// }
 }
 
 render(

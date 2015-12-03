@@ -53,4 +53,4 @@ class BuyADip extends React.Component {
 	}
 }
 
-module.exports = BuyADip
+export default BuyADip

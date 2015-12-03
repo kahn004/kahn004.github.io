@@ -10,4 +10,4 @@ class Big extends React.Component {
 	}
 }
 
-module.exports = Big
+export default Big

@@ -9,4 +9,4 @@ class PickYourOwn extends React.Component {
 	}
 }
 
-module.exports = PickYourOwn
+export default PickYourOwn

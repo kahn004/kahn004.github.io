@@ -8,4 +8,4 @@ class SecondChance extends React.Component {
 	}
 }
 
-module.exports = SecondChance
+export default SecondChance

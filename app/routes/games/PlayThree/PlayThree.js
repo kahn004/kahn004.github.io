@@ -8,4 +8,4 @@ class PlayThree extends React.Component {
 	}
 }
 
-module.exports = PlayThree
+export default PlayThree
