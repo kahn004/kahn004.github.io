@@ -27095,7 +27095,7 @@
 									_react2['default'].createElement(
 										_reactRouter.Link,
 										{ to: '/' },
-										'My Lotto'
+										'My Game'
 									)
 								)
 							)
