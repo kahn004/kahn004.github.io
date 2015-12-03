@@ -12,13 +12,13 @@ class Navigation extends React.Component {
 	render () {
 		return (
 			<ul className="menu">
-				<li><Link to="/powerball" activeStyle={this.activeLink}>Game1</Link></li>
-				<li><Link to="/big" activeStyle={this.activeLink}>Game2</Link></li>
-				<li><Link to="/keno" activeStyle={this.activeLink}>Game3</Link></li>
-				<li><Link to="/bullseye" activeStyle={this.activeLink}>Game4</Link></li>
-				<li><Link to="/playthree" activeStyle={this.activeLink}>Game5</Link></li>
-				<li><Link to="/instantkiwi" activeStyle={this.activeLink}>Game6</Link></li>
-				<li><Link to="/secondchance" activeStyle={this.activeLink}>Game7</Link></li>
+				<li><Link to="/ghetto" activeStyle={this.activeLink}>Ghetto Superball</Link></li>
+				<li><Link to="/huge" activeStyle={this.activeLink}>Huge Wednesday</Link></li>
+				<li><Link to="/gini" activeStyle={this.activeLink}>Gini</Link></li>
+				<li><Link to="/goldeneye" activeStyle={this.activeLink}>Goldeneye</Link></li>
+				<li><Link to="/numbers" activeStyle={this.activeLink}>Numbers</Link></li>
+				<li><Link to="/instant-noodle" activeStyle={this.activeLink}>Instant noodle</Link></li>
+				<li><Link to="/second-marriage" activeStyle={this.activeLink}>Second marriage</Link></li>
 			</ul>
 		)
 	}

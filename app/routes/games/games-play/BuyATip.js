@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-class BuyADip extends React.Component {
+class BuyATip extends React.Component {
 
 	constructor (props) {
 		super(props)
@@ -33,9 +33,9 @@ class BuyADip extends React.Component {
 
 		return (
 			<div>
-				<h5>Buy a dip</h5>
+				<h5>Buy a tip</h5>
 				<p>
-					A dip is a random selection of numbers. The dip types give you options to play the different games: Lotto, Powerball and Strike. You can now play on Wednesdays and Saturdays.
+					A tip is a random selection of numbers. The tip types give you options to play the different games: Ghetto, Superball and Shtrike. You can now play on Wednesdays and Saturdays.
 				</p>
 				<button className="button" onClick={this.updateStatus}>Buy now</button>
 			</div>
@@ -53,4 +53,4 @@ class BuyADip extends React.Component {
 	}
 }
 
-export default BuyADip
+export default BuyATip

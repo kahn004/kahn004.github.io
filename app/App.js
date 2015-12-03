@@ -9,16 +9,16 @@ import { AltContainer } from 'alt'
 
 import Home from './components/Home'
 import Main from './components/Main'
-import Big from './routes/games/Big/Big'
-import Bullseye from './routes/games/Bullseye/Bullseye'
-import InstantKiwi from './routes/games/InstantKiwi/InstantKiwi'
-import Keno from './routes/games/Keno/Keno'
-import PlayThree from './routes/games/PlayThree/PlayThree'
-import Powerball from './routes/games/Powerball/Powerball'
-import SecondChance from './routes/games/SecondChance/SecondChance'
-import BuyADip from './routes/games/games-play/BuyADip'
-import Favourites from './routes/games/games-play/Favourites'
-import PickYourOwn from './routes/games/games-play/PickYourOwn'
+import Huge from './routes/games/Huge/Huge'
+import Goldeneye from './routes/games/Goldeneye/Goldeneye'
+import InstantNoodle from './routes/games/InstantNoodle/InstantNoodle'
+import Gini from './routes/games/Gini/Gini'
+import Numbers from './routes/games/Numbers/Numbers'
+import Superball from './routes/games/Superball/Superball'
+import SecondMarriage from './routes/games/SecondMarriage/SecondMarriage'
+import BuyATip from './routes/games/games-play/BuyATip'
+import Bookmarks from './routes/games/games-play/Bookmarks'
+import SelectYourOwn from './routes/games/games-play/SelectYourOwn'
 
 var history = createHistory()
 
@@ -50,17 +50,17 @@ render(
 	<Router history={history}>
 		<Route path="/" component={App}>
       		<IndexRoute component={Home} />
-			<Route path="powerball" component={Powerball}>
-		        <Route path="buy-a-dip" component={BuyADip} />
-		        <Route path="favourites" component={Favourites} />
-		        <Route path="pick-your-own" component={PickYourOwn} />
+			<Route path="ghetto" component={Superball}>
+		        <Route path="buy-a-tip" component={BuyATip} />
+		        <Route path="bookmarks" component={Bookmarks} />
+		        <Route path="select-your-own" component={SelectYourOwn} />
 		    </Route>
-			<Route path="big" component={Big} />
-			<Route path="keno" component={Keno} />
-			<Route path="bullseye" component={Bullseye} />
-			<Route path="playthree" component={PlayThree} />
-			<Route path="instantkiwi" component={InstantKiwi} />
-			<Route path="secondchance" component={SecondChance} />
+			<Route path="huge" component={Huge} />
+			<Route path="gini" component={Gini} />
+			<Route path="goldeneye" component={Goldeneye} />
+			<Route path="numbers" component={Numbers} />
+			<Route path="instant-noodle" component={InstantNoodle} />
+			<Route path="second-marriage" component={SecondMarriage} />
 		</Route>
 	</Router>,
   document.getElementById('example')
