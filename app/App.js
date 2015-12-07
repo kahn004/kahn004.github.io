@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { render } from 'react-dom'
 import { createHistory } from 'history'
 import { Router, Route, IndexRoute } from 'react-router'
@@ -9,6 +10,7 @@ import { AltContainer } from 'alt'
 
 import Home from './components/Home'
 import Main from './components/Main'
+import GhettoChanges from './routes/GhettoChanges'
 import Huge from './routes/games/Huge/Huge'
 import Goldeneye from './routes/games/Goldeneye/Goldeneye'
 import InstantNoodle from './routes/games/InstantNoodle/InstantNoodle'
@@ -61,6 +63,7 @@ render(
 			<Route path="numbers" component={Numbers} />
 			<Route path="instant-noodle" component={InstantNoodle} />
 			<Route path="second-marriage" component={SecondMarriage} />
+			<Route path="ghetto-changes" component={GhettoChanges} />
 		</Route>
 	</Router>,
   document.getElementById('example')
