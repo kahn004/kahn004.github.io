@@ -13,7 +13,10 @@ class BuyATip extends React.Component {
 
 		this.state = {
 			gameMode: true,
-			totalPrice: 0
+			totalPrice: '0',
+			luckyTip: ['4.80', '6', '9', '12'],
+			powerTip: ['9.60', '12', '18', '24'],
+			tripleTip: ['14', '16', '20', '26']
 		}
 	}
 
@@ -32,11 +35,10 @@ class BuyATip extends React.Component {
 	}
 
 	tipSelectionHandler (e) {
-		e.preventDefault()
+		var value = e.target.value
 		this.setState({
-			totalPrice: this.state.totalPrice + 1
+			totalPrice: value
 		})
-		console.log('update total price')
 	}
 
 	renderGame () {
@@ -51,35 +53,59 @@ class BuyATip extends React.Component {
 					<div className="small-12 large-4 columns">
 						<h5>Lucky Tip</h5>
 						<h6>Ghetto $1 Million</h6>
-						<ul>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$4.80 | 8 Ghetto lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$6 | 10 Ghetto lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$9 | 15 Ghetto lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$12 | 20 Ghetto lines</a></li>
-						</ul>
+						{ this.state.luckyTip.map((item, index) => {
+							return (
+								<div key={index}>
+									<label className="button">
+										<input
+											type="radio"
+											name="tips"
+											value={item}
+											onClick={this.tipSelectionHandler} />
+										{ item }
+									</label>
+								</div>
+							)
+						}) }
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Power Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
-						<ul>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$9.60 | 8 Ghetto lines, 8 Superball lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$6 | 10 Ghetto lines, 10 Superball lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$9 | 15 Ghetto lines, 15 Superball lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$12 | 20 Ghetto lines, 20 Superball lines</a></li>
-						</ul>
+						{ this.state.powerTip.map((item, index) => {
+							return (
+								<div key={index}>
+									<label className="button">
+										<input
+											type="radio"
+											name="tips"
+											value={item}
+											onClick={this.tipSelectionHandler} />
+										{ item }
+									</label>
+								</div>
+							)
+						}) }
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Triple Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
 						<h6>Hit $300 Thousand</h6>
-						<ul>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$14 | 10 Ghetto lines, 10 Superball lines, 2 Hit lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$16 | 10 Ghetto lines, 10 Superball lines, 4 Hit lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$20 | 15 Ghetto lines, 15 Superball lines, 2 Hit lines</a></li>
-							<li><a className="secondary button" onClick={this.tipSelectionHandler} href="#">$26 | 20 Ghetto lines, 20 Superball lines, 2 Hit lines</a></li>
-						</ul>
+						{ this.state.tripleTip.map((item, index) => {
+							return (
+								<div key={index}>
+									<label className="button">
+										<input
+											type="radio"
+											name="tips"
+											value={item}
+											onClick={this.tipSelectionHandler} />
+										{ item }
+									</label>
+								</div>
+							)
+						}) }
 					</div>
 				</div>
 				<div>

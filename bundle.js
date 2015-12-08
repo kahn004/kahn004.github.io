@@ -79,47 +79,47 @@
 
 	var _componentsMain2 = _interopRequireDefault(_componentsMain);
 
-	var _routesGhettoChanges = __webpack_require__(240);
+	var _routesGhettoChanges = __webpack_require__(230);
 
 	var _routesGhettoChanges2 = _interopRequireDefault(_routesGhettoChanges);
 
-	var _routesGamesHugeHuge = __webpack_require__(230);
+	var _routesGamesHugeHuge = __webpack_require__(231);
 
 	var _routesGamesHugeHuge2 = _interopRequireDefault(_routesGamesHugeHuge);
 
-	var _routesGamesGoldeneyeGoldeneye = __webpack_require__(231);
+	var _routesGamesGoldeneyeGoldeneye = __webpack_require__(232);
 
 	var _routesGamesGoldeneyeGoldeneye2 = _interopRequireDefault(_routesGamesGoldeneyeGoldeneye);
 
-	var _routesGamesInstantNoodleInstantNoodle = __webpack_require__(232);
+	var _routesGamesInstantNoodleInstantNoodle = __webpack_require__(233);
 
 	var _routesGamesInstantNoodleInstantNoodle2 = _interopRequireDefault(_routesGamesInstantNoodleInstantNoodle);
 
-	var _routesGamesGiniGini = __webpack_require__(233);
+	var _routesGamesGiniGini = __webpack_require__(234);
 
 	var _routesGamesGiniGini2 = _interopRequireDefault(_routesGamesGiniGini);
 
-	var _routesGamesNumbersNumbers = __webpack_require__(234);
+	var _routesGamesNumbersNumbers = __webpack_require__(235);
 
 	var _routesGamesNumbersNumbers2 = _interopRequireDefault(_routesGamesNumbersNumbers);
 
-	var _routesGamesSuperballSuperball = __webpack_require__(235);
+	var _routesGamesSuperballSuperball = __webpack_require__(236);
 
 	var _routesGamesSuperballSuperball2 = _interopRequireDefault(_routesGamesSuperballSuperball);
 
-	var _routesGamesSecondMarriageSecondMarriage = __webpack_require__(236);
+	var _routesGamesSecondMarriageSecondMarriage = __webpack_require__(237);
 
 	var _routesGamesSecondMarriageSecondMarriage2 = _interopRequireDefault(_routesGamesSecondMarriageSecondMarriage);
 
-	var _routesGamesGamesPlayBuyATip = __webpack_require__(237);
+	var _routesGamesGamesPlayBuyATip = __webpack_require__(238);
 
 	var _routesGamesGamesPlayBuyATip2 = _interopRequireDefault(_routesGamesGamesPlayBuyATip);
 
-	var _routesGamesGamesPlayBookmarks = __webpack_require__(238);
+	var _routesGamesGamesPlayBookmarks = __webpack_require__(239);
 
 	var _routesGamesGamesPlayBookmarks2 = _interopRequireDefault(_routesGamesGamesPlayBookmarks);
 
-	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(239);
+	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(240);
 
 	var _routesGamesGamesPlaySelectYourOwn2 = _interopRequireDefault(_routesGamesGamesPlaySelectYourOwn);
 
@@ -27254,6 +27254,77 @@
 
 	var _reactRouter = __webpack_require__(189);
 
+	var GhettoChanges = (function (_React$Component) {
+		_inherits(GhettoChanges, _React$Component);
+
+		function GhettoChanges() {
+			_classCallCheck(this, GhettoChanges);
+
+			_get(Object.getPrototypeOf(GhettoChanges.prototype), 'constructor', this).apply(this, arguments);
+		}
+
+		_createClass(GhettoChanges, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement(
+						'h5',
+						null,
+						'Ghetto changes'
+					),
+					_react2['default'].createElement(
+						'p',
+						null,
+						'Your favourite Ghetto games are creating more winners and more millionaires than ever before with Superball and Hit now played on Wednesday and Saturday.'
+					),
+					_react2['default'].createElement(
+						_reactRouter.Link,
+						{ className: 'button', to: '/ghetto/buy-a-tip' },
+						'Buy a tip'
+					),
+					_react2['default'].createElement(
+						_reactRouter.Link,
+						{ className: 'button', to: '/ghetto/select-your-own' },
+						'Select your own'
+					)
+				);
+			}
+		}]);
+
+		return GhettoChanges;
+	})(_react2['default'].Component);
+
+	exports['default'] = GhettoChanges;
+	module.exports = exports['default'];
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(189);
+
 	var Huge = (function (_React$Component) {
 		_inherits(Huge, _React$Component);
 
@@ -27281,7 +27352,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27331,7 +27402,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27381,7 +27452,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27431,7 +27502,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27481,7 +27552,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27569,7 +27640,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27619,7 +27690,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27659,7 +27730,10 @@
 
 			this.state = {
 				gameMode: true,
-				totalPrice: 0
+				totalPrice: '0',
+				luckyTip: ['4.80', '6', '9', '12'],
+				powerTip: ['9.60', '12', '18', '24'],
+				tripleTip: ['14', '16', '20', '26']
 			};
 		}
 
@@ -27682,15 +27756,15 @@
 		}, {
 			key: 'tipSelectionHandler',
 			value: function tipSelectionHandler(e) {
-				e.preventDefault();
+				var value = e.target.value;
 				this.setState({
-					totalPrice: this.state.totalPrice + 1
+					totalPrice: value
 				});
-				console.log('update total price');
 			}
 		}, {
 			key: 'renderGame',
 			value: function renderGame() {
+				var _this = this;
 
 				return _react2['default'].createElement(
 					'div',
@@ -27727,46 +27801,22 @@
 								null,
 								'Ghetto $1 Million'
 							),
-							_react2['default'].createElement(
-								'ul',
-								null,
-								_react2['default'].createElement(
-									'li',
-									null,
+							this.state.luckyTip.map(function (item, index) {
+								return _react2['default'].createElement(
+									'div',
+									{ key: index },
 									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$4.80 | 8 Ghetto lines'
+										'label',
+										{ className: 'button' },
+										_react2['default'].createElement('input', {
+											type: 'radio',
+											name: 'tips',
+											value: item,
+											onClick: _this.tipSelectionHandler }),
+										item
 									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$6 | 10 Ghetto lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$9 | 15 Ghetto lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$12 | 20 Ghetto lines'
-									)
-								)
-							)
+								);
+							})
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27786,46 +27836,22 @@
 								null,
 								'Superball $13 Million'
 							),
-							_react2['default'].createElement(
-								'ul',
-								null,
-								_react2['default'].createElement(
-									'li',
-									null,
+							this.state.powerTip.map(function (item, index) {
+								return _react2['default'].createElement(
+									'div',
+									{ key: index },
 									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$9.60 | 8 Ghetto lines, 8 Superball lines'
+										'label',
+										{ className: 'button' },
+										_react2['default'].createElement('input', {
+											type: 'radio',
+											name: 'tips',
+											value: item,
+											onClick: _this.tipSelectionHandler }),
+										item
 									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$6 | 10 Ghetto lines, 10 Superball lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$9 | 15 Ghetto lines, 15 Superball lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$12 | 20 Ghetto lines, 20 Superball lines'
-									)
-								)
-							)
+								);
+							})
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27850,46 +27876,22 @@
 								null,
 								'Hit $300 Thousand'
 							),
-							_react2['default'].createElement(
-								'ul',
-								null,
-								_react2['default'].createElement(
-									'li',
-									null,
+							this.state.tripleTip.map(function (item, index) {
+								return _react2['default'].createElement(
+									'div',
+									{ key: index },
 									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$14 | 10 Ghetto lines, 10 Superball lines, 2 Hit lines'
+										'label',
+										{ className: 'button' },
+										_react2['default'].createElement('input', {
+											type: 'radio',
+											name: 'tips',
+											value: item,
+											onClick: _this.tipSelectionHandler }),
+										item
 									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$16 | 10 Ghetto lines, 10 Superball lines, 4 Hit lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$20 | 15 Ghetto lines, 15 Superball lines, 2 Hit lines'
-									)
-								),
-								_react2['default'].createElement(
-									'li',
-									null,
-									_react2['default'].createElement(
-										'a',
-										{ className: 'secondary button', onClick: this.tipSelectionHandler, href: '#' },
-										'$26 | 20 Ghetto lines, 20 Superball lines, 2 Hit lines'
-									)
-								)
-							)
+								);
+							})
 						)
 					),
 					_react2['default'].createElement(
@@ -27948,7 +27950,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27998,7 +28000,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28045,77 +28047,6 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = SelectYourOwn;
-	module.exports = exports['default'];
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(189);
-
-	var GhettoChanges = (function (_React$Component) {
-		_inherits(GhettoChanges, _React$Component);
-
-		function GhettoChanges() {
-			_classCallCheck(this, GhettoChanges);
-
-			_get(Object.getPrototypeOf(GhettoChanges.prototype), 'constructor', this).apply(this, arguments);
-		}
-
-		_createClass(GhettoChanges, [{
-			key: 'render',
-			value: function render() {
-				return _react2['default'].createElement(
-					'div',
-					null,
-					_react2['default'].createElement(
-						'h5',
-						null,
-						'Ghetto changes'
-					),
-					_react2['default'].createElement(
-						'p',
-						null,
-						'Your favourite Ghetto games are creating more winners and more millionaires than ever before with Superball and Hit now played on Wednesday and Saturday.'
-					),
-					_react2['default'].createElement(
-						_reactRouter.Link,
-						{ className: 'button', to: '/ghetto/buy-a-tip' },
-						'Buy a tip'
-					),
-					_react2['default'].createElement(
-						_reactRouter.Link,
-						{ className: 'button', to: '/ghetto/select-your-own' },
-						'Select your own'
-					)
-				);
-			}
-		}]);
-
-		return GhettoChanges;
-	})(_react2['default'].Component);
-
-	exports['default'] = GhettoChanges;
 	module.exports = exports['default'];
 
 /***/ }
