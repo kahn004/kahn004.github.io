@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import Tip from './Tip'
+
 class BuyATip extends React.Component {
 
 	constructor (props) {
@@ -14,9 +16,31 @@ class BuyATip extends React.Component {
 		this.state = {
 			gameMode: true,
 			totalPrice: '0',
-			luckyTip: ['4.80', '6', '9', '12'],
-			powerTip: ['9.60', '12', '18', '24'],
-			tripleTip: ['14', '16', '20', '26']
+			tipType: '',
+			luckyTip: {
+				name: 'Lucky Tip',
+				tips: ['4.80', '6', '9', '12'],
+				numberOfLines: {
+					ghetto: ['8', '10', '15', '20']
+				}
+			},
+			powerTip: {
+				name: 'Power Tip',
+				tips: ['9.60', '12', '18', '24'],
+				numberOfLines: {
+					ghetto: ['8', '10', '15', '20'],
+					superball: ['8', '10', '15', '20']
+				}
+			},
+			tripleTip: {
+				name: 'Triple Tip',
+				tips: ['14', '16', '20', '26'],
+				numberOfLines: {
+					ghetto: ['10', '10', '15', '20'],
+					superball: ['10', '10', '15', '20'],
+					hit: ['2', '4', '2', '2']
+				}
+			}
 		}
 	}
 
@@ -36,8 +60,10 @@ class BuyATip extends React.Component {
 
 	tipSelectionHandler (e) {
 		var value = e.target.value
+		var name = e.target.dataset.tip
 		this.setState({
-			totalPrice: value
+			totalPrice: value,
+			tipType: name
 		})
 	}
 
@@ -53,59 +79,20 @@ class BuyATip extends React.Component {
 					<div className="small-12 large-4 columns">
 						<h5>Lucky Tip</h5>
 						<h6>Ghetto $1 Million</h6>
-						{ this.state.luckyTip.map((item, index) => {
-							return (
-								<div key={index}>
-									<label className="button">
-										<input
-											type="radio"
-											name="tips"
-											value={item}
-											onClick={this.tipSelectionHandler} />
-										{ item }
-									</label>
-								</div>
-							)
-						}) }
+						<Tip tipType={this.state.luckyTip} onClickTip={this.tipSelectionHandler} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Power Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
-						{ this.state.powerTip.map((item, index) => {
-							return (
-								<div key={index}>
-									<label className="button">
-										<input
-											type="radio"
-											name="tips"
-											value={item}
-											onClick={this.tipSelectionHandler} />
-										{ item }
-									</label>
-								</div>
-							)
-						}) }
+						<Tip tipType={this.state.powerTip} onClickTip={this.tipSelectionHandler} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Triple Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
 						<h6>Hit $300 Thousand</h6>
-						{ this.state.tripleTip.map((item, index) => {
-							return (
-								<div key={index}>
-									<label className="button">
-										<input
-											type="radio"
-											name="tips"
-											value={item}
-											onClick={this.tipSelectionHandler} />
-										{ item }
-									</label>
-								</div>
-							)
-						}) }
+						<Tip tipType={this.state.powerTip} onClickTip={this.tipSelectionHandler} />
 					</div>
 				</div>
 				<div>
@@ -121,9 +108,10 @@ class BuyATip extends React.Component {
 
 		return (
 			<div>
-				<h5>Result</h5>
-				<h6>${ this.state.totalPrice }</h6>
-				<button className="button" onClick={this.updateStatus}>Back</button>
+				<h5>Check your ticket, choose your draw(s) and then confirm purchase</h5>
+				<h6>Your Selection</h6>
+				<h6>{ this.state.tipType }, ${ this.state.totalPrice }</h6>
+				<button className="button" onClick={this.updateStatus}>Click here to change your dip selection.</button>
 			</div>
 		)
 	}

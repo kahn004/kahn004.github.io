@@ -115,11 +115,11 @@
 
 	var _routesGamesGamesPlayBuyATip2 = _interopRequireDefault(_routesGamesGamesPlayBuyATip);
 
-	var _routesGamesGamesPlayBookmarks = __webpack_require__(239);
+	var _routesGamesGamesPlayBookmarks = __webpack_require__(240);
 
 	var _routesGamesGamesPlayBookmarks2 = _interopRequireDefault(_routesGamesGamesPlayBookmarks);
 
-	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(240);
+	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(241);
 
 	var _routesGamesGamesPlaySelectYourOwn2 = _interopRequireDefault(_routesGamesGamesPlaySelectYourOwn);
 
@@ -27715,6 +27715,10 @@
 
 	var _reactRouter = __webpack_require__(189);
 
+	var _Tip = __webpack_require__(239);
+
+	var _Tip2 = _interopRequireDefault(_Tip);
+
 	var BuyATip = (function (_React$Component) {
 		_inherits(BuyATip, _React$Component);
 
@@ -27731,9 +27735,31 @@
 			this.state = {
 				gameMode: true,
 				totalPrice: '0',
-				luckyTip: ['4.80', '6', '9', '12'],
-				powerTip: ['9.60', '12', '18', '24'],
-				tripleTip: ['14', '16', '20', '26']
+				tipType: '',
+				luckyTip: {
+					name: 'Lucky Tip',
+					tips: ['4.80', '6', '9', '12'],
+					numberOfLines: {
+						ghetto: ['8', '10', '15', '20']
+					}
+				},
+				powerTip: {
+					name: 'Power Tip',
+					tips: ['9.60', '12', '18', '24'],
+					numberOfLines: {
+						ghetto: ['8', '10', '15', '20'],
+						superball: ['8', '10', '15', '20']
+					}
+				},
+				tripleTip: {
+					name: 'Triple Tip',
+					tips: ['14', '16', '20', '26'],
+					numberOfLines: {
+						ghetto: ['10', '10', '15', '20'],
+						superball: ['10', '10', '15', '20'],
+						hit: ['2', '4', '2', '2']
+					}
+				}
 			};
 		}
 
@@ -27757,14 +27783,15 @@
 			key: 'tipSelectionHandler',
 			value: function tipSelectionHandler(e) {
 				var value = e.target.value;
+				var name = e.target.dataset.tip;
 				this.setState({
-					totalPrice: value
+					totalPrice: value,
+					tipType: name
 				});
 			}
 		}, {
 			key: 'renderGame',
 			value: function renderGame() {
-				var _this = this;
 
 				return _react2['default'].createElement(
 					'div',
@@ -27801,22 +27828,7 @@
 								null,
 								'Ghetto $1 Million'
 							),
-							this.state.luckyTip.map(function (item, index) {
-								return _react2['default'].createElement(
-									'div',
-									{ key: index },
-									_react2['default'].createElement(
-										'label',
-										{ className: 'button' },
-										_react2['default'].createElement('input', {
-											type: 'radio',
-											name: 'tips',
-											value: item,
-											onClick: _this.tipSelectionHandler }),
-										item
-									)
-								);
-							})
+							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.luckyTip, onClickTip: this.tipSelectionHandler })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27836,22 +27848,7 @@
 								null,
 								'Superball $13 Million'
 							),
-							this.state.powerTip.map(function (item, index) {
-								return _react2['default'].createElement(
-									'div',
-									{ key: index },
-									_react2['default'].createElement(
-										'label',
-										{ className: 'button' },
-										_react2['default'].createElement('input', {
-											type: 'radio',
-											name: 'tips',
-											value: item,
-											onClick: _this.tipSelectionHandler }),
-										item
-									)
-								);
-							})
+							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.powerTip, onClickTip: this.tipSelectionHandler })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27876,22 +27873,7 @@
 								null,
 								'Hit $300 Thousand'
 							),
-							this.state.tripleTip.map(function (item, index) {
-								return _react2['default'].createElement(
-									'div',
-									{ key: index },
-									_react2['default'].createElement(
-										'label',
-										{ className: 'button' },
-										_react2['default'].createElement('input', {
-											type: 'radio',
-											name: 'tips',
-											value: item,
-											onClick: _this.tipSelectionHandler }),
-										item
-									)
-								);
-							})
+							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.powerTip, onClickTip: this.tipSelectionHandler })
 						)
 					),
 					_react2['default'].createElement(
@@ -27926,18 +27908,24 @@
 					_react2['default'].createElement(
 						'h5',
 						null,
-						'Result'
+						'Check your ticket, choose your draw(s) and then confirm purchase'
 					),
 					_react2['default'].createElement(
 						'h6',
 						null,
-						'$',
+						'Your Selection'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.tipType,
+						', $',
 						this.state.totalPrice
 					),
 					_react2['default'].createElement(
 						'button',
 						{ className: 'button', onClick: this.updateStatus },
-						'Back'
+						'Click here to change your dip selection.'
 					)
 				);
 			}
@@ -27951,6 +27939,80 @@
 
 /***/ },
 /* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Tip = (function (_React$Component) {
+		_inherits(Tip, _React$Component);
+
+		function Tip() {
+			_classCallCheck(this, Tip);
+
+			_get(Object.getPrototypeOf(Tip.prototype), "constructor", this).apply(this, arguments);
+		}
+
+		_createClass(Tip, [{
+			key: "render",
+			value: function render() {
+				var _this = this;
+
+				var tipType = this.props.tipType;
+				var tipOptions = tipType.tips.map(function (item, index) {
+					return _react2["default"].createElement(
+						"div",
+						{ key: index },
+						_react2["default"].createElement(
+							"label",
+							{ className: "button" },
+							_react2["default"].createElement("input", {
+								"data-tip": tipType.name,
+								type: "radio",
+								name: "tips",
+								value: item,
+								onClick: _this.props.onClickTip }),
+							"$",
+							item,
+							tipType.numberOfLines.ghetto ? ', ' + tipType.numberOfLines.ghetto[index] + ' Ghetto lines' : null,
+							tipType.numberOfLines.superball ? ', ' + tipType.numberOfLines.superball[index] + ' Superball lines' : null,
+							tipType.numberOfLines.hit ? ', ' + tipType.numberOfLines.hit[index] + ' Hit lines' : null
+						)
+					);
+				});
+				return _react2["default"].createElement(
+					"div",
+					null,
+					tipOptions
+				);
+			}
+		}]);
+
+		return Tip;
+	})(_react2["default"].Component);
+
+	exports["default"] = Tip;
+	module.exports = exports["default"];
+
+/***/ },
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28000,7 +28062,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
