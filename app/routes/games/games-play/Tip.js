@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Extras from './Extras'
+
 class Tip extends React.Component {
 
 	render () {
@@ -7,7 +9,7 @@ class Tip extends React.Component {
 		var tipOptions = tipType.tips.map((item, index) => {
 			return (
 				<div key={index}>
-					<label className="button">
+					<label className="secondary label">
 						<input
 							data-tip={tipType.name}
 							type="radio"
@@ -25,6 +27,7 @@ class Tip extends React.Component {
 		return (
 			<div>
 				{ tipOptions }
+				<Extras />
 			</div>
 		)
 	}

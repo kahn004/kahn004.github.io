@@ -61,6 +61,7 @@ class BuyATip extends React.Component {
 	tipSelectionHandler (e) {
 		var value = e.target.value
 		var name = e.target.dataset.tip
+
 		this.setState({
 			totalPrice: value,
 			tipType: name
@@ -92,7 +93,7 @@ class BuyATip extends React.Component {
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
 						<h6>Hit $300 Thousand</h6>
-						<Tip tipType={this.state.powerTip} onClickTip={this.tipSelectionHandler} />
+						<Tip tipType={this.state.tripleTip} onClickTip={this.tipSelectionHandler} />
 					</div>
 				</div>
 				<div>
