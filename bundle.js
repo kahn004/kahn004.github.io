@@ -115,11 +115,11 @@
 
 	var _routesGamesGamesPlayBuyATip2 = _interopRequireDefault(_routesGamesGamesPlayBuyATip);
 
-	var _routesGamesGamesPlayBookmarks = __webpack_require__(239);
+	var _routesGamesGamesPlayBookmarks = __webpack_require__(241);
 
 	var _routesGamesGamesPlayBookmarks2 = _interopRequireDefault(_routesGamesGamesPlayBookmarks);
 
-	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(240);
+	var _routesGamesGamesPlaySelectYourOwn = __webpack_require__(242);
 
 	var _routesGamesGamesPlaySelectYourOwn2 = _interopRequireDefault(_routesGamesGamesPlaySelectYourOwn);
 
@@ -27715,7 +27715,7 @@
 
 	var _reactRouter = __webpack_require__(189);
 
-	var _Tip = __webpack_require__(241);
+	var _Tip = __webpack_require__(239);
 
 	var _Tip2 = _interopRequireDefault(_Tip);
 
@@ -27731,10 +27731,15 @@
 			this.renderGame = this.renderGame.bind(this);
 			this.renderResult = this.renderResult.bind(this);
 			this.tipSelectionHandler = this.tipSelectionHandler.bind(this);
+			this.handleLineSelect = this.handleLineSelect.bind(this);
 
 			this.state = {
 				gameMode: true,
 				totalPrice: '0',
+				linesPrice: 0,
+				lineName: '',
+				totalLines: 0,
+				lineType: '',
 				tipType: '',
 				luckyTip: {
 					name: 'Lucky Tip',
@@ -27829,7 +27834,10 @@
 								null,
 								'Ghetto $1 Million'
 							),
-							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.luckyTip, onClickTip: this.tipSelectionHandler })
+							_react2['default'].createElement(_Tip2['default'], {
+								tipType: this.state.luckyTip,
+								onClickTip: this.tipSelectionHandler,
+								onClickLine: this.handleLineSelect })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27849,7 +27857,9 @@
 								null,
 								'Superball $13 Million'
 							),
-							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.powerTip, onClickTip: this.tipSelectionHandler })
+							_react2['default'].createElement(_Tip2['default'], {
+								tipType: this.state.powerTip,
+								onClickTip: this.tipSelectionHandler })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -27874,7 +27884,9 @@
 								null,
 								'Hit $300 Thousand'
 							),
-							_react2['default'].createElement(_Tip2['default'], { tipType: this.state.tripleTip, onClickTip: this.tipSelectionHandler })
+							_react2['default'].createElement(_Tip2['default'], {
+								tipType: this.state.tripleTip,
+								onClickTip: this.tipSelectionHandler })
 						)
 					),
 					_react2['default'].createElement(
@@ -27890,6 +27902,15 @@
 							null,
 							'Total $',
 							this.state.totalPrice
+						),
+						_react2['default'].createElement(
+							'h6',
+							null,
+							this.state.lineName,
+							', ',
+							this.state.totalLines,
+							' lines $',
+							this.state.linesPrice
 						),
 						_react2['default'].createElement(
 							'button',
@@ -27925,10 +27946,23 @@
 					),
 					_react2['default'].createElement(
 						'button',
-						{ className: 'button', onClick: this.updateStatus },
+						{
+							className: 'button',
+							onClick: this.updateStatus
+						},
 						'Click here to change your dip selection.'
 					)
 				);
+			}
+		}, {
+			key: 'handleLineSelect',
+			value: function handleLineSelect(type, lines, price) {
+				this.setState({
+					totalLines: lines,
+					linesPrice: price,
+					lineName: type,
+					totalPrice: parseInt(this.state.totalPrice) + price
+				});
 			}
 		}]);
 
@@ -27940,6 +27974,821 @@
 
 /***/ },
 /* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Extras = __webpack_require__(240);
+
+	var _Extras2 = _interopRequireDefault(_Extras);
+
+	var Tip = (function (_React$Component) {
+		_inherits(Tip, _React$Component);
+
+		function Tip(props) {
+			_classCallCheck(this, Tip);
+
+			_get(Object.getPrototypeOf(Tip.prototype), 'constructor', this).call(this, props);
+		}
+
+		_createClass(Tip, [{
+			key: 'render',
+			value: function render() {
+				var _this = this;
+
+				var tipType = this.props.tipType;
+				var tipOptions = tipType.tips.map(function (item, index) {
+					return _react2['default'].createElement(
+						'div',
+						{ key: index },
+						_react2['default'].createElement(
+							'label',
+							{ className: 'secondary label' },
+							_react2['default'].createElement('input', {
+								'data-tip': tipType.name,
+								type: 'radio',
+								name: 'tips',
+								value: item,
+								onClick: _this.props.onClickTip }),
+							'$',
+							item,
+							tipType.numberOfLines.ghetto ? ', ' + tipType.numberOfLines.ghetto[index] + ' Ghetto lines' : null,
+							tipType.numberOfLines.superball ? ', ' + tipType.numberOfLines.superball[index] + ' Superball lines' : null,
+							tipType.numberOfLines.hit ? ', ' + tipType.numberOfLines.hit[index] + ' Hit lines' : null
+						)
+					);
+				});
+				return _react2['default'].createElement(
+					'div',
+					null,
+					tipOptions,
+					_react2['default'].createElement(_Extras2['default'], { tip: tipType.name, lolL: this.props.onClickLine })
+				);
+			}
+		}]);
+
+		return Tip;
+	})(_react2['default'].Component);
+
+	exports['default'] = Tip;
+	module.exports = exports['default'];
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Extras = (function (_React$Component) {
+		_inherits(Extras, _React$Component);
+
+		function Extras(props) {
+			_classCallCheck(this, Extras);
+
+			_get(Object.getPrototypeOf(Extras.prototype), 'constructor', this).call(this, props);
+
+			this.state = {
+				superballLines: [8, 9, 10, 15, 20]
+			};
+
+			this.superballLinesInDollar = this.superballLinesInDollar.bind(this);
+		}
+
+		_createClass(Extras, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					null,
+					this.extraModal(this.props.tip)
+				);
+			}
+		}, {
+			key: 'superballLinesInDollar',
+			value: function superballLinesInDollar(e) {
+				var lineType = e.target.dataset.type;
+				var lines = e.target.innerHTML;
+				var price = parseInt(lines) * .6;
+				var rounded = Math.round(price * 10) / 10;
+				this.props.lolL(lineType, lines, rounded);
+			}
+		}, {
+			key: 'extraModal',
+			value: function extraModal(tip) {
+				var _this = this;
+
+				switch (tip) {
+					case 'Lucky Tip':
+						return _react2['default'].createElement(
+							'div',
+							null,
+							_react2['default'].createElement(
+								'h6',
+								null,
+								'Would you like to add Superball or Hit?'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Superball Extra $0.60 per line'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Hit Extra $1.00 per line'
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'1. Choose how many lines you want to play'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									this.state.superballLines.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{
+												key: index,
+												className: 'info badge',
+												'data-type': 'Superball',
+												onClick: _this.superballLinesInDollar
+											},
+											item
+										);
+									})
+								),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'2. Choose one Powerball number for all lines'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'10'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Random'
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'Choose how many lines you want to add'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'10'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'11'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'12'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'13'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'14'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'15'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'16'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'17'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'18'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'19'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'20'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							)
+						);
+						break;
+					case 'Power Tip':
+						return _react2['default'].createElement(
+							'div',
+							null,
+							_react2['default'].createElement(
+								'h6',
+								null,
+								'Would you like to change Superball or add Hit?'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Superball Change'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Hit Extra $1.00 per line'
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'Choose one Powerball number for all lines'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'10'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Random'
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'Choose how many lines you want to add'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'10'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'11'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'12'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'13'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'14'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'15'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'16'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'17'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'18'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'19'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'20'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							)
+						);
+						break;
+					case 'Triple Tip':
+						return _react2['default'].createElement(
+							'div',
+							null,
+							_react2['default'].createElement(
+								'h6',
+								null,
+								'Would you like to change Superball or Hit?'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Superball Change'
+							),
+							_react2['default'].createElement(
+								'button',
+								{ className: 'hollow button' },
+								'Hit Change'
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'Choose one Powerball number for all lines'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'info badge' },
+										'10'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Random'
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							),
+							_react2['default'].createElement(
+								'div',
+								null,
+								_react2['default'].createElement('hr', null),
+								_react2['default'].createElement(
+									'p',
+									null,
+									'Choose how many lines you want to add'
+								),
+								_react2['default'].createElement(
+									'div',
+									null,
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'01'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'02'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'03'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'04'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'05'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'06'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'07'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'08'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'09'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'10'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'11'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'12'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'13'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'14'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'15'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'16'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'17'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'18'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'19'
+									),
+									_react2['default'].createElement(
+										'span',
+										{ className: 'alert badge' },
+										'20'
+									)
+								),
+								_react2['default'].createElement(
+									'button',
+									{ className: 'hollow button' },
+									'Reset'
+								)
+							)
+						);
+						break;
+				}
+			}
+		}]);
+
+		return Extras;
+	})(_react2['default'].Component);
+
+	exports['default'] = Extras;
+	module.exports = exports['default'];
+
+/***/ },
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27989,7 +28838,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28037,149 +28886,6 @@
 
 	exports['default'] = SelectYourOwn;
 	module.exports = exports['default'];
-
-/***/ },
-/* 241 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Extras = __webpack_require__(242);
-
-	var _Extras2 = _interopRequireDefault(_Extras);
-
-	var Tip = (function (_React$Component) {
-		_inherits(Tip, _React$Component);
-
-		function Tip() {
-			_classCallCheck(this, Tip);
-
-			_get(Object.getPrototypeOf(Tip.prototype), 'constructor', this).apply(this, arguments);
-		}
-
-		_createClass(Tip, [{
-			key: 'render',
-			value: function render() {
-				var _this = this;
-
-				var tipType = this.props.tipType;
-				var tipOptions = tipType.tips.map(function (item, index) {
-					return _react2['default'].createElement(
-						'div',
-						{ key: index },
-						_react2['default'].createElement(
-							'label',
-							{ className: 'secondary label' },
-							_react2['default'].createElement('input', {
-								'data-tip': tipType.name,
-								type: 'radio',
-								name: 'tips',
-								value: item,
-								onClick: _this.props.onClickTip }),
-							'$',
-							item,
-							tipType.numberOfLines.ghetto ? ', ' + tipType.numberOfLines.ghetto[index] + ' Ghetto lines' : null,
-							tipType.numberOfLines.superball ? ', ' + tipType.numberOfLines.superball[index] + ' Superball lines' : null,
-							tipType.numberOfLines.hit ? ', ' + tipType.numberOfLines.hit[index] + ' Hit lines' : null
-						)
-					);
-				});
-				return _react2['default'].createElement(
-					'div',
-					null,
-					tipOptions,
-					_react2['default'].createElement(_Extras2['default'], null)
-				);
-			}
-		}]);
-
-		return Tip;
-	})(_react2['default'].Component);
-
-	exports['default'] = Tip;
-	module.exports = exports['default'];
-
-/***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var Extras = (function (_React$Component) {
-		_inherits(Extras, _React$Component);
-
-		function Extras() {
-			_classCallCheck(this, Extras);
-
-			_get(Object.getPrototypeOf(Extras.prototype), "constructor", this).apply(this, arguments);
-		}
-
-		_createClass(Extras, [{
-			key: "render",
-			value: function render() {
-				return _react2["default"].createElement(
-					"div",
-					null,
-					_react2["default"].createElement(
-						"h6",
-						null,
-						"Text"
-					),
-					_react2["default"].createElement(
-						"button",
-						{ className: "hollow button" },
-						"a"
-					),
-					_react2["default"].createElement(
-						"button",
-						{ className: "hollow button" },
-						"b"
-					)
-				);
-			}
-		}]);
-
-		return Extras;
-	})(_react2["default"].Component);
-
-	exports["default"] = Extras;
-	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);

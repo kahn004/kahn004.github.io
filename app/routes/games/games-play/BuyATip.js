@@ -12,10 +12,15 @@ class BuyATip extends React.Component {
 		this.renderGame = this.renderGame.bind(this)
 		this.renderResult = this.renderResult.bind(this)
 		this.tipSelectionHandler = this.tipSelectionHandler.bind(this)
+		this.handleLineSelect = this.handleLineSelect.bind(this)
 
 		this.state = {
 			gameMode: true,
 			totalPrice: '0',
+			linesPrice: 0,
+			lineName: '',
+			totalLines: 0,
+			lineType: '',
 			tipType: '',
 			luckyTip: {
 				name: 'Lucky Tip',
@@ -80,25 +85,33 @@ class BuyATip extends React.Component {
 					<div className="small-12 large-4 columns">
 						<h5>Lucky Tip</h5>
 						<h6>Ghetto $1 Million</h6>
-						<Tip tipType={this.state.luckyTip} onClickTip={this.tipSelectionHandler} />
+						<Tip
+							tipType={this.state.luckyTip}
+							onClickTip={this.tipSelectionHandler}
+							onClickLine={this.handleLineSelect} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Power Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
-						<Tip tipType={this.state.powerTip} onClickTip={this.tipSelectionHandler} />
+						<Tip
+							tipType={this.state.powerTip}
+							onClickTip={this.tipSelectionHandler} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Triple Tip</h5>
 						<h6>Ghetto $1 Million</h6>
 						<h6>Superball $13 Million</h6>
 						<h6>Hit $300 Thousand</h6>
-						<Tip tipType={this.state.tripleTip} onClickTip={this.tipSelectionHandler} />
+						<Tip
+							tipType={this.state.tripleTip}
+							onClickTip={this.tipSelectionHandler} />
 					</div>
 				</div>
 				<div>
 					<h5>Your ticket details</h5>
 					<h6>Total ${ this.state.totalPrice }</h6>
+					<h6>{ this.state.lineName }, { this.state.totalLines } lines ${ this.state.linesPrice }</h6>
 					<button className="button" onClick={this.updateStatus}>Buy now</button>
 				</div>
 			</div>
@@ -112,9 +125,23 @@ class BuyATip extends React.Component {
 				<h5>Check your ticket, choose your draw(s) and then confirm purchase</h5>
 				<h6>Your Selection</h6>
 				<h6>{ this.state.tipType }, ${ this.state.totalPrice }</h6>
-				<button className="button" onClick={this.updateStatus}>Click here to change your dip selection.</button>
+				<button
+					className="button"
+					onClick={this.updateStatus}
+				>
+					Click here to change your dip selection.
+				</button>
 			</div>
 		)
+	}
+
+	handleLineSelect (type, lines, price) {
+		this.setState({
+			totalLines: lines,
+			linesPrice: price,
+			lineName: type,
+			totalPrice: parseInt(this.state.totalPrice) + price
+		})
 	}
 }
 

@@ -4,6 +4,10 @@ import Extras from './Extras'
 
 class Tip extends React.Component {
 
+	constructor (props) {
+		super(props)
+	}
+
 	render () {
 		var tipType = this.props.tipType
 		var tipOptions = tipType.tips.map((item, index) => {
@@ -27,7 +31,7 @@ class Tip extends React.Component {
 		return (
 			<div>
 				{ tipOptions }
-				<Extras />
+				<Extras tip={tipType.name} lolL={this.props.onClickLine} />
 			</div>
 		)
 	}
