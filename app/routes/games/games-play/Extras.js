@@ -8,11 +8,15 @@ class Extras extends React.Component {
 		this.state = {
 			superballLines: [8, 9, 10, 15, 20],
 			superballNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-			hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+			hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+			showSuperballLines: false,
+			showHitLines: false
 		}
 
 		this.superballLinesInDollar = this.superballLinesInDollar.bind(this)
 		this.addHitLines = this.addHitLines.bind(this)
+		this.toggleSuperballLines = this.toggleSuperballLines.bind(this)
+		this.toggleHitLines = this.toggleHitLines.bind(this)
 	}
 
 	render () {
@@ -36,19 +40,28 @@ class Extras extends React.Component {
 		this.props.lolL2(lines)
 	}
 
-	extraModal (tip) {
+	toggleSuperballLines () {
+		this.setState({
+			showSuperballLines: !(this.state.showSuperballLines)
+		})
+	}
 
-		var extraStyle = {
-			display: 'block'
-		}
+	toggleHitLines () {
+		this.setState({
+			showHitLines: !(this.state.showHitLines)
+		})
+	}
+
+	extraModal (tip) {
 
 		switch (tip) {
 			case 'Lucky Tip':
 				return (
-					<div style={extraStyle}>
+					<div>
 						<h6>Would you like to add Superball or Hit?</h6>
-						<button className="hollow button">Superball Extra $0.60 per line</button>
-						<button className="hollow button">Hit Extra $1.00 per line</button>
+						<button className="hollow button" onClick={this.toggleSuperballLines}>Superball Extra $0.60 per line</button>
+						<button className="hollow button" onClick={this.toggleHitLines}>Hit Extra $1.00 per line</button>
+						{ this.state.showSuperballLines ?
 						<div>
 							<hr />
 							<p>1. Choose how many lines you want to play</p>
@@ -77,6 +90,9 @@ class Extras extends React.Component {
 							<button className="hollow button">Random</button>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
+						{ this.state.showHitLines ?
 						<div>
 							<hr />
 							<p>Choose how many lines you want to add</p>
@@ -92,15 +108,18 @@ class Extras extends React.Component {
 							</div>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
 					</div>
 				)
 				break
 			case 'Power Tip':
 				return (
-					<div style={extraStyle}>
+					<div>
 						<h6>Would you like to change Superball or add Hit?</h6>
-						<button className="hollow button">Superball Change</button>
-						<button className="hollow button">Hit Extra $1.00 per line</button>
+						<button className="hollow button" onClick={this.toggleSuperballLines}>Superball Change</button>
+						<button className="hollow button" onClick={this.toggleHitLines}>Hit Extra $1.00 per line</button>
+						{ this.state.showSuperballLines ?
 						<div>
 							<hr />
 							<p>Choose one Powerball number for all lines</p>
@@ -114,6 +133,9 @@ class Extras extends React.Component {
 							<button className="hollow button">Random</button>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
+						{ this.state.showHitLines ?
 						<div>
 							<hr />
 							<p>Choose how many lines you want to add</p>
@@ -129,15 +151,18 @@ class Extras extends React.Component {
 							</div>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
 					</div>
 				)
 				break
 			case 'Triple Tip':
 				return (
-					<div style={extraStyle}>
+					<div>
 						<h6>Would you like to change Superball or Hit?</h6>
-						<button className="hollow button">Superball Change</button>
-						<button className="hollow button">Hit Change</button>
+						<button className="hollow button" onClick={this.toggleSuperballLines}>Superball Change</button>
+						<button className="hollow button" onClick={this.toggleHitLines}>Hit Change</button>
+						{ this.state.showSuperballLines ?
 						<div>
 							<hr />
 							<p>Choose one Powerball number for all lines</p>
@@ -151,6 +176,9 @@ class Extras extends React.Component {
 							<button className="hollow button">Random</button>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
+						{ this.state.showHitLines ?
 						<div>
 							<hr />
 							<p>Choose how many lines you want to add</p>
@@ -166,6 +194,8 @@ class Extras extends React.Component {
 							</div>
 							<button className="hollow button">Reset</button>
 						</div>
+						: null
+						}
 					</div>
 				)
 				break

@@ -27644,6 +27644,7 @@
 			this.handleLineSelect = this.handleLineSelect.bind(this);
 			this.handleLineSelect2 = this.handleLineSelect2.bind(this);
 			this.updateTotalPrice = this.updateTotalPrice.bind(this);
+			this.incDraw = this.incDraw.bind(this);
 
 			this.state = {
 				gameMode: true,
@@ -27651,7 +27652,8 @@
 				totalPrice: '0',
 				linesPrice: 0,
 				lineName: '',
-				totalLines: 0,
+				totalGhettoLines: 0,
+				totalSuperballLines: 0,
 				totalHitLines: 0,
 				lineType: '',
 				tipType: '',
@@ -27678,7 +27680,13 @@
 						superball: ['10', '10', '15', '20'],
 						hit: ['2', '4', '2', '2']
 					}
-				}
+				},
+				days: {
+					wed: true,
+					sat: false
+				},
+				numberOfDraws: 1,
+				moreDraws: ['wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed']
 			};
 		}
 
@@ -27807,7 +27815,7 @@
 							'h6',
 							null,
 							'Superball, ',
-							this.state.totalLines,
+							this.state.totalSuperballLines,
 							' lines $',
 							this.state.linesPrice
 						),
@@ -27836,6 +27844,24 @@
 		}, {
 			key: 'renderResult',
 			value: function renderResult() {
+				var _this = this;
+
+				var generateMoreDraws = this.state.moreDraws.map(function (item, index) {
+					return _react2['default'].createElement(
+						'li',
+						{ key: index },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'button', onClick: _this.incDraw },
+							index + 1
+						),
+						_react2['default'].createElement(
+							'div',
+							null,
+							item
+						)
+					);
+				});
 
 				return _react2['default'].createElement(
 					'div',
@@ -27858,14 +27884,118 @@
 						this.state.totalPrice
 					),
 					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalGhettoLines,
+						' Lines Ghetto'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalSuperballLines,
+						' Lines Superball'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalHitLines,
+						' Lines Hit'
+					),
+					_react2['default'].createElement(
 						'button',
 						{
 							className: 'button',
 							onClick: this.updateStatus
 						},
 						'Click here to change your dip selection.'
+					),
+					_react2['default'].createElement(
+						'h3',
+						null,
+						'Choose the draw you want to play',
+						_react2['default'].createElement('br', null),
+						'or click both to play twice a week'
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Next draw, Wednesdays'
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Saturday'
+					),
+					_react2['default'].createElement(
+						'div',
+						null,
+						_react2['default'].createElement(
+							'h3',
+							null,
+							'Want more draws?'
+						),
+						_react2['default'].createElement(
+							'ul',
+							{ className: 'menu' },
+							generateMoreDraws
+						)
+					),
+					_react2['default'].createElement('hr', null),
+					_react2['default'].createElement(
+						'h5',
+						null,
+						'Summary'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.tipType,
+						', $',
+						this.state.currentTipSelection
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Superball, ',
+						this.state.totalSuperballLines,
+						' lines $',
+						this.state.linesPrice
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Hit, ',
+						this.state.totalHitLines,
+						' lines $',
+						this.state.totalHitLines
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Number of draws, ',
+						this.state.numberOfDraws
+					),
+					_react2['default'].createElement('hr', null),
+					_react2['default'].createElement(
+						'h4',
+						null,
+						'Total $',
+						this.state.totalPrice * this.state.numberOfDraws
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Confirm purchase'
 					)
 				);
+			}
+		}, {
+			key: 'incDraw',
+			value: function incDraw(e) {
+				var a = parseInt(e.target.innerHTML);
+				this.setState({
+					numberOfDraws: a
+				});
 			}
 		}, {
 			key: 'updateTotalPrice',
@@ -27887,13 +28017,18 @@
 			value: function tipSelectionHandler(e) {
 				var value = e.target.value;
 				var name = e.target.dataset.tip;
+				var ghetto = e.target.dataset.ghetto;
+				var superball = e.target.dataset.superball;
+				var hit = e.target.dataset.hit;
 
 				this.setState({
 					currentTipSelection: value,
 					tipType: name,
 					totalHitLines: 0,
 					linesPrice: 0,
-					totalLines: 0,
+					totalGhettoLines: ghetto,
+					totalSuperballLines: superball,
+					totalHitLines: hit,
 					totalPrice: this.updateTotalPrice(value, 0, 0)
 				});
 			}
@@ -27901,7 +28036,7 @@
 			key: 'handleLineSelect',
 			value: function handleLineSelect(type, lines, price) {
 				this.setState({
-					totalLines: lines,
+					totalSuperballLines: lines,
 					linesPrice: price,
 					lineName: type,
 					totalPrice: this.updateTotalPrice(this.state.currentTipSelection, this.state.totalHitLines, price)
@@ -27975,6 +28110,9 @@
 							{ className: 'secondary label' },
 							_react2['default'].createElement('input', {
 								'data-tip': tipType.name,
+								'data-ghetto': tipType.numberOfLines.ghetto ? tipType.numberOfLines.ghetto[index] : 0,
+								'data-superball': tipType.numberOfLines.superball ? tipType.numberOfLines.superball[index] : 0,
+								'data-hit': tipType.numberOfLines.hit ? tipType.numberOfLines.hit[index] : 0,
 								type: 'radio',
 								name: 'tips',
 								value: item,
@@ -28040,11 +28178,15 @@
 			this.state = {
 				superballLines: [8, 9, 10, 15, 20],
 				superballNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-				hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+				hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+				showSuperballLines: false,
+				showHitLines: false
 			};
 
 			this.superballLinesInDollar = this.superballLinesInDollar.bind(this);
 			this.addHitLines = this.addHitLines.bind(this);
+			this.toggleSuperballLines = this.toggleSuperballLines.bind(this);
+			this.toggleHitLines = this.toggleHitLines.bind(this);
 		}
 
 		_createClass(Extras, [{
@@ -28072,19 +28214,29 @@
 				this.props.lolL2(lines);
 			}
 		}, {
+			key: 'toggleSuperballLines',
+			value: function toggleSuperballLines() {
+				this.setState({
+					showSuperballLines: !this.state.showSuperballLines
+				});
+			}
+		}, {
+			key: 'toggleHitLines',
+			value: function toggleHitLines() {
+				this.setState({
+					showHitLines: !this.state.showHitLines
+				});
+			}
+		}, {
 			key: 'extraModal',
 			value: function extraModal(tip) {
 				var _this = this;
-
-				var extraStyle = {
-					display: 'block'
-				};
 
 				switch (tip) {
 					case 'Lucky Tip':
 						return _react2['default'].createElement(
 							'div',
-							{ style: extraStyle },
+							null,
 							_react2['default'].createElement(
 								'h6',
 								null,
@@ -28092,15 +28244,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Extra $0.60 per line'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Extra $1.00 per line'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28151,8 +28303,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28180,13 +28332,13 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 					case 'Power Tip':
 						return _react2['default'].createElement(
 							'div',
-							{ style: extraStyle },
+							null,
 							_react2['default'].createElement(
 								'h6',
 								null,
@@ -28194,15 +28346,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Change'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Extra $1.00 per line'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28232,8 +28384,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28261,13 +28413,13 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 					case 'Triple Tip':
 						return _react2['default'].createElement(
 							'div',
-							{ style: extraStyle },
+							null,
 							_react2['default'].createElement(
 								'h6',
 								null,
@@ -28275,15 +28427,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Change'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Change'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28313,8 +28465,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -28342,7 +28494,7 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 				}
