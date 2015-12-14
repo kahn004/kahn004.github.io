@@ -31,7 +31,10 @@ class Tip extends React.Component {
 		return (
 			<div>
 				{ tipOptions }
-				<Extras tip={tipType.name} lolL={this.props.onClickLine} />
+				<Extras
+					tip={tipType.name}
+					lolL={this.props.onClickLine}
+					lolL2={this.props.onClickLine2} />
 			</div>
 		)
 	}
