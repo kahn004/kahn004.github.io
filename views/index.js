@@ -8,6 +8,9 @@ import InstantNoodle from './InstantNoodle/InstantNoodle'
 import Numbers from './Numbers/Numbers'
 import SecondMarriage from './SecondMarriage/SecondMarriage'
 import Superball from './Superball/Superball'
+import SuperballBuyATip from './Superball/SuperballBuyATip'
+import SuperballBookmarks from './Superball/SuperballBookmarks'
+import SuperballSelectYourOwn from './Superball/SuperballSelectYourOwn'
 
 module.exports = {
 	App,
@@ -19,5 +22,8 @@ module.exports = {
 	InstantNoodle,
 	Numbers,
 	SecondMarriage,
-	Superball
+	Superball,
+	SuperballBuyATip,
+	SuperballBookmarks,
+	SuperballSelectYourOwn
 }

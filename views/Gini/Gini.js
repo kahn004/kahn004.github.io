@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class Gini extends Component {
 	render () {
 		return (
-			<h3>Gini</h3>
+			<div>
+				<hr />
+				<h3>Gini</h3>
+			</div>
 		)
 	}
 }

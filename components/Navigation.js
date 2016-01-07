@@ -5,31 +5,31 @@ class Navigation extends Component {
 	render () {
 		const links = [
 			{
-				url: 'ghetto',
+				url: '/ghetto',
 				title: 'Ghetto Superball'
 			},
 			{
-				url: 'huge',
-				title: 'huge'
+				url: '/huge',
+				title: 'Huge'
 			},
 			{
-				url: 'gini',
+				url: '/gini',
 				title: 'Gini'
 			},
 			{
-				url: 'goldeneye',
+				url: '/goldeneye',
 				title: 'Goldeneye'
 			},
 			{
-				url: 'numbers',
+				url: '/numbers',
 				title: 'Numbers'
 			},
 			{
-				url: 'instant-noodle',
+				url: '/instant-noodle',
 				title: 'Instant Noodle'
 			},
 			{
-				url: 'second-marriage',
+				url: '/second-marriage',
 				title: 'Second Marriage'
 			}
 		].map((link, index) =>

@@ -15,7 +15,10 @@ import {
 	InstantNoodle,
 	Numbers,
 	SecondMarriage,
-	Superball
+	Superball,
+	SuperballBuyATip,
+	SuperballBookmarks,
+	SuperballSelectYourOwn
 } from './views'
 import reducers from './reducers'
 
@@ -32,7 +35,11 @@ render(
 		<Router history={history}>
 			<Route path="/" component={App}>
 				<IndexRoute component={Home} />
-				<Route path="ghetto" component={Superball} />
+				<Route path="ghetto" component={Superball}>
+					<Route path="buy-a-tip" component={SuperballBuyATip} />
+					<Route path="bookmarks" component={SuperballBookmarks} />
+					<Route path="select-your-own" component={SuperballSelectYourOwn} />	
+				</Route>
 				<Route path="huge" component={Huge} />
 				<Route path="gini" component={Gini} />
 				<Route path="goldeneye" component={Goldeneye} />

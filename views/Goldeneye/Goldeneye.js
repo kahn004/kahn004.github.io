@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class Goldeneye extends Component {
 	render () {
 		return (
-			<h3>Goldeneye</h3>
+			<div>
+				<hr />
+				<h3>Goldeneye</h3>
+			</div>
 		)
 	}
 }

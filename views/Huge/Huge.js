@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class Huge extends Component {
 	render () {
 		return (
-			<h3>Huge</h3>
+			<div>
+				<hr />
+				<h3>Huge</h3>
+			</div>
 		)
 	}
 }

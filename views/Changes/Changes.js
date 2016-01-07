@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class Changes extends Component {
 	render () {
 		return (
-			<h3>Changes</h3>
+			<div>
+				<hr />
+				<h3>Ghetto changes</h3>
+			</div>
 		)
 	}
 }
