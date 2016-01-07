@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createHistory } from 'history'
 import { Router, Route, IndexRoute } from 'react-router'
-import { AltContainer } from 'alt'
+// import { AltContainer } from 'alt'
 
 // import MyLottoActions from './actions/MyLottoActions'
 // import MyLottoStore from './stores/MyLottoStore'
