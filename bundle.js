@@ -25654,13 +25654,19 @@
 			this.renderResult = this.renderResult.bind(this);
 			this.tipSelectionHandler = this.tipSelectionHandler.bind(this);
 			this.handleLineSelect = this.handleLineSelect.bind(this);
+			this.handleLineSelect2 = this.handleLineSelect2.bind(this);
+			this.updateTotalPrice = this.updateTotalPrice.bind(this);
+			this.incDraw = this.incDraw.bind(this);
 
 			this.state = {
 				gameMode: true,
+				currentTipSelection: 0,
 				totalPrice: '0',
 				linesPrice: 0,
 				lineName: '',
-				totalLines: 0,
+				totalGhettoLines: 0,
+				totalSuperballLines: 0,
+				totalHitLines: 0,
 				lineType: '',
 				tipType: '',
 				luckyTip: {
@@ -25686,7 +25692,13 @@
 						superball: ['10', '10', '15', '20'],
 						hit: ['2', '4', '2', '2']
 					}
-				}
+				},
+				days: {
+					wed: true,
+					sat: false
+				},
+				numberOfDraws: 1,
+				moreDraws: ['wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed']
 			};
 		}
 
@@ -25698,24 +25710,6 @@
 					null,
 					this.state.gameMode ? this.renderGame() : this.renderResult()
 				);
-			}
-		}, {
-			key: 'updateStatus',
-			value: function updateStatus() {
-				this.setState({
-					gameMode: !this.state.gameMode
-				});
-			}
-		}, {
-			key: 'tipSelectionHandler',
-			value: function tipSelectionHandler(e) {
-				var value = e.target.value;
-				var name = e.target.dataset.tip;
-
-				this.setState({
-					totalPrice: value,
-					tipType: name
-				});
 			}
 		}, {
 			key: 'renderGame',
@@ -25759,7 +25753,8 @@
 							_react2['default'].createElement(_Tip2['default'], {
 								tipType: this.state.luckyTip,
 								onClickTip: this.tipSelectionHandler,
-								onClickLine: this.handleLineSelect })
+								onClickLine: this.handleLineSelect,
+								onClickLine2: this.handleLineSelect2 })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -25781,7 +25776,8 @@
 							),
 							_react2['default'].createElement(_Tip2['default'], {
 								tipType: this.state.powerTip,
-								onClickTip: this.tipSelectionHandler })
+								onClickTip: this.tipSelectionHandler,
+								onClickLine2: this.handleLineSelect2 })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -25808,7 +25804,8 @@
 							),
 							_react2['default'].createElement(_Tip2['default'], {
 								tipType: this.state.tripleTip,
-								onClickTip: this.tipSelectionHandler })
+								onClickTip: this.tipSelectionHandler,
+								onClickLine2: this.handleLineSelect2 })
 						)
 					),
 					_react2['default'].createElement(
@@ -25822,17 +25819,31 @@
 						_react2['default'].createElement(
 							'h6',
 							null,
-							'Total $',
-							this.state.totalPrice
+							this.state.tipType,
+							', $',
+							this.state.currentTipSelection
 						),
 						_react2['default'].createElement(
 							'h6',
 							null,
-							this.state.lineName,
-							', ',
-							this.state.totalLines,
+							'Superball, ',
+							this.state.totalSuperballLines,
 							' lines $',
 							this.state.linesPrice
+						),
+						_react2['default'].createElement(
+							'h6',
+							null,
+							'Hit, ',
+							this.state.totalHitLines,
+							' lines $',
+							this.state.totalHitLines
+						),
+						_react2['default'].createElement(
+							'h4',
+							null,
+							'Total $',
+							this.state.totalPrice
 						),
 						_react2['default'].createElement(
 							'button',
@@ -25845,6 +25856,24 @@
 		}, {
 			key: 'renderResult',
 			value: function renderResult() {
+				var _this = this;
+
+				var generateMoreDraws = this.state.moreDraws.map(function (item, index) {
+					return _react2['default'].createElement(
+						'li',
+						{ key: index },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'button', onClick: _this.incDraw },
+							index + 1
+						),
+						_react2['default'].createElement(
+							'div',
+							null,
+							item
+						)
+					);
+				});
 
 				return _react2['default'].createElement(
 					'div',
@@ -25867,23 +25896,170 @@
 						this.state.totalPrice
 					),
 					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalGhettoLines,
+						' Lines Ghetto'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalSuperballLines,
+						' Lines Superball'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.totalHitLines,
+						' Lines Hit'
+					),
+					_react2['default'].createElement(
 						'button',
 						{
 							className: 'button',
 							onClick: this.updateStatus
 						},
 						'Click here to change your dip selection.'
+					),
+					_react2['default'].createElement(
+						'h3',
+						null,
+						'Choose the draw you want to play',
+						_react2['default'].createElement('br', null),
+						'or click both to play twice a week'
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Next draw, Wednesdays'
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Saturday'
+					),
+					_react2['default'].createElement(
+						'div',
+						null,
+						_react2['default'].createElement(
+							'h3',
+							null,
+							'Want more draws?'
+						),
+						_react2['default'].createElement(
+							'ul',
+							{ className: 'menu' },
+							generateMoreDraws
+						)
+					),
+					_react2['default'].createElement('hr', null),
+					_react2['default'].createElement(
+						'h5',
+						null,
+						'Summary'
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						this.state.tipType,
+						', $',
+						this.state.currentTipSelection
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Superball, ',
+						this.state.totalSuperballLines,
+						' lines $',
+						this.state.linesPrice
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Hit, ',
+						this.state.totalHitLines,
+						' lines $',
+						this.state.totalHitLines
+					),
+					_react2['default'].createElement(
+						'h6',
+						null,
+						'Number of draws, ',
+						this.state.numberOfDraws
+					),
+					_react2['default'].createElement('hr', null),
+					_react2['default'].createElement(
+						'h4',
+						null,
+						'Total $',
+						this.state.totalPrice * this.state.numberOfDraws
+					),
+					_react2['default'].createElement(
+						'button',
+						{ className: 'button' },
+						'Confirm purchase'
 					)
 				);
+			}
+		}, {
+			key: 'incDraw',
+			value: function incDraw(e) {
+				var a = parseInt(e.target.innerHTML);
+				this.setState({
+					numberOfDraws: a
+				});
+			}
+		}, {
+			key: 'updateTotalPrice',
+			value: function updateTotalPrice(a, b, c) {
+				var p1 = parseFloat(a);
+				var p2 = parseFloat(b);
+				var p3 = parseFloat(c);
+				return p1 + p2 + p3;
+			}
+		}, {
+			key: 'updateStatus',
+			value: function updateStatus() {
+				this.setState({
+					gameMode: !this.state.gameMode
+				});
+			}
+		}, {
+			key: 'tipSelectionHandler',
+			value: function tipSelectionHandler(e) {
+				var value = e.target.value;
+				var name = e.target.dataset.tip;
+				var ghetto = e.target.dataset.ghetto;
+				var superball = e.target.dataset.superball;
+				var hit = e.target.dataset.hit;
+
+				this.setState({
+					currentTipSelection: value,
+					tipType: name,
+					totalHitLines: 0,
+					linesPrice: 0,
+					totalGhettoLines: ghetto,
+					totalSuperballLines: superball,
+					totalHitLines: hit,
+					totalPrice: this.updateTotalPrice(value, 0, 0)
+				});
 			}
 		}, {
 			key: 'handleLineSelect',
 			value: function handleLineSelect(type, lines, price) {
 				this.setState({
-					totalLines: lines,
+					totalSuperballLines: lines,
 					linesPrice: price,
 					lineName: type,
-					totalPrice: parseInt(this.state.totalPrice) + price
+					totalPrice: this.updateTotalPrice(this.state.currentTipSelection, this.state.totalHitLines, price)
+				});
+			}
+		}, {
+			key: 'handleLineSelect2',
+			value: function handleLineSelect2(lines) {
+				this.setState({
+					totalHitLines: lines,
+					totalPrice: this.updateTotalPrice(this.state.currentTipSelection, lines, this.state.linesPrice)
 				});
 			}
 		}]);
@@ -25946,6 +26122,9 @@
 							{ className: 'secondary label' },
 							_react2['default'].createElement('input', {
 								'data-tip': tipType.name,
+								'data-ghetto': tipType.numberOfLines.ghetto ? tipType.numberOfLines.ghetto[index] : 0,
+								'data-superball': tipType.numberOfLines.superball ? tipType.numberOfLines.superball[index] : 0,
+								'data-hit': tipType.numberOfLines.hit ? tipType.numberOfLines.hit[index] : 0,
 								type: 'radio',
 								name: 'tips',
 								value: item,
@@ -25962,7 +26141,10 @@
 					'div',
 					null,
 					tipOptions,
-					_react2['default'].createElement(_Extras2['default'], { tip: tipType.name, lolL: this.props.onClickLine })
+					_react2['default'].createElement(_Extras2['default'], {
+						tip: tipType.name,
+						lolL: this.props.onClickLine,
+						lolL2: this.props.onClickLine2 })
 				);
 			}
 		}]);
@@ -26006,10 +26188,17 @@
 			_get(Object.getPrototypeOf(Extras.prototype), 'constructor', this).call(this, props);
 
 			this.state = {
-				superballLines: [8, 9, 10, 15, 20]
+				superballLines: [8, 9, 10, 15, 20],
+				superballNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+				hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+				showSuperballLines: false,
+				showHitLines: false
 			};
 
 			this.superballLinesInDollar = this.superballLinesInDollar.bind(this);
+			this.addHitLines = this.addHitLines.bind(this);
+			this.toggleSuperballLines = this.toggleSuperballLines.bind(this);
+			this.toggleHitLines = this.toggleHitLines.bind(this);
 		}
 
 		_createClass(Extras, [{
@@ -26031,6 +26220,26 @@
 				this.props.lolL(lineType, lines, rounded);
 			}
 		}, {
+			key: 'addHitLines',
+			value: function addHitLines(e) {
+				var lines = parseInt(e.target.innerHTML);
+				this.props.lolL2(lines);
+			}
+		}, {
+			key: 'toggleSuperballLines',
+			value: function toggleSuperballLines() {
+				this.setState({
+					showSuperballLines: !this.state.showSuperballLines
+				});
+			}
+		}, {
+			key: 'toggleHitLines',
+			value: function toggleHitLines() {
+				this.setState({
+					showHitLines: !this.state.showHitLines
+				});
+			}
+		}, {
 			key: 'extraModal',
 			value: function extraModal(tip) {
 				var _this = this;
@@ -26047,15 +26256,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Extra $0.60 per line'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Extra $1.00 per line'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26088,56 +26297,13 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'10'
-									)
+									this.state.superballNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{ key: index, className: 'info badge' },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
@@ -26149,8 +26315,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26162,113 +26328,23 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'10'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'11'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'12'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'13'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'14'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'15'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'16'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'17'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'18'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'19'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'20'
-									)
+									this.state.hitNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{
+												key: index,
+												className: 'alert badge',
+												onClick: _this.addHitLines },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 					case 'Power Tip':
@@ -26282,15 +26358,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Change'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Extra $1.00 per line'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26302,56 +26378,13 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'10'
-									)
+									this.state.superballNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{ key: index, className: 'info badge' },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
@@ -26363,8 +26396,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26376,113 +26409,23 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'10'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'11'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'12'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'13'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'14'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'15'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'16'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'17'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'18'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'19'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'20'
-									)
+									this.state.hitNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{
+												key: index,
+												className: 'alert badge',
+												onClick: _this.addHitLines },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 					case 'Triple Tip':
@@ -26496,15 +26439,15 @@
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleSuperballLines },
 								'Superball Change'
 							),
 							_react2['default'].createElement(
 								'button',
-								{ className: 'hollow button' },
+								{ className: 'hollow button', onClick: this.toggleHitLines },
 								'Hit Change'
 							),
-							_react2['default'].createElement(
+							this.state.showSuperballLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26516,56 +26459,13 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'info badge' },
-										'10'
-									)
+									this.state.superballNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{ key: index, className: 'info badge' },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
@@ -26577,8 +26477,8 @@
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							),
-							_react2['default'].createElement(
+							) : null,
+							this.state.showHitLines ? _react2['default'].createElement(
 								'div',
 								null,
 								_react2['default'].createElement('hr', null),
@@ -26590,113 +26490,23 @@
 								_react2['default'].createElement(
 									'div',
 									null,
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'01'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'02'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'03'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'04'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'05'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'06'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'07'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'08'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'09'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'10'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'11'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'12'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'13'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'14'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'15'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'16'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'17'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'18'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'19'
-									),
-									_react2['default'].createElement(
-										'span',
-										{ className: 'alert badge' },
-										'20'
-									)
+									this.state.hitNums.map(function (item, index) {
+										return _react2['default'].createElement(
+											'span',
+											{
+												key: index,
+												className: 'alert badge',
+												onClick: _this.addHitLines },
+											item
+										);
+									})
 								),
 								_react2['default'].createElement(
 									'button',
 									{ className: 'hollow button' },
 									'Reset'
 								)
-							)
+							) : null
 						);
 						break;
 				}

@@ -16,6 +16,9 @@ class Tip extends React.Component {
 					<label className="secondary label">
 						<input
 							data-tip={tipType.name}
+							data-ghetto={tipType.numberOfLines.ghetto ? tipType.numberOfLines.ghetto[index] : 0}
+							data-superball={tipType.numberOfLines.superball ? tipType.numberOfLines.superball[index] : 0}
+							data-hit={tipType.numberOfLines.hit ? tipType.numberOfLines.hit[index] : 0}
 							type="radio"
 							name="tips"
 							value={item}
@@ -31,7 +34,10 @@ class Tip extends React.Component {
 		return (
 			<div>
 				{ tipOptions }
-				<Extras tip={tipType.name} lolL={this.props.onClickLine} />
+				<Extras
+					tip={tipType.name}
+					lolL={this.props.onClickLine}
+					lolL2={this.props.onClickLine2} />
 			</div>
 		)
 	}

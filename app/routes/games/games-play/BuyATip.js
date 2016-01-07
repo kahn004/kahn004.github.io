@@ -13,13 +13,19 @@ class BuyATip extends React.Component {
 		this.renderResult = this.renderResult.bind(this)
 		this.tipSelectionHandler = this.tipSelectionHandler.bind(this)
 		this.handleLineSelect = this.handleLineSelect.bind(this)
+		this.handleLineSelect2 = this.handleLineSelect2.bind(this)
+		this.updateTotalPrice = this.updateTotalPrice.bind(this)
+		this.incDraw = this.incDraw.bind(this)
 
 		this.state = {
 			gameMode: true,
+			currentTipSelection: 0,
 			totalPrice: '0',
 			linesPrice: 0,
 			lineName: '',
-			totalLines: 0,
+			totalGhettoLines: 0,
+			totalSuperballLines: 0,
+			totalHitLines: 0,
 			lineType: '',
 			tipType: '',
 			luckyTip: {
@@ -45,7 +51,13 @@ class BuyATip extends React.Component {
 					superball: ['10', '10', '15', '20'],
 					hit: ['2', '4', '2', '2']
 				}
-			}
+			},
+			days: {
+				wed: true,
+				sat: false
+			},
+			numberOfDraws: 1,
+			moreDraws: ['wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed', 'wed']
 		}
 	}
 
@@ -55,22 +67,6 @@ class BuyATip extends React.Component {
 				{ this.state.gameMode ? this.renderGame() : this.renderResult() }
 			</div>
 		)
-	}
-
-	updateStatus () {
-		this.setState({
-			gameMode: !(this.state.gameMode)
-		})
-	}
-
-	tipSelectionHandler (e) {
-		var value = e.target.value
-		var name = e.target.dataset.tip
-
-		this.setState({
-			totalPrice: value,
-			tipType: name
-		})
 	}
 
 	renderGame () {
@@ -88,7 +84,8 @@ class BuyATip extends React.Component {
 						<Tip
 							tipType={this.state.luckyTip}
 							onClickTip={this.tipSelectionHandler}
-							onClickLine={this.handleLineSelect} />
+							onClickLine={this.handleLineSelect}
+							onClickLine2={this.handleLineSelect2} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Power Tip</h5>
@@ -96,7 +93,8 @@ class BuyATip extends React.Component {
 						<h6>Superball $13 Million</h6>
 						<Tip
 							tipType={this.state.powerTip}
-							onClickTip={this.tipSelectionHandler} />
+							onClickTip={this.tipSelectionHandler}
+							onClickLine2={this.handleLineSelect2} />
 					</div>
 					<div className="small-12 large-4 columns">
 						<h5>Triple Tip</h5>
@@ -105,13 +103,16 @@ class BuyATip extends React.Component {
 						<h6>Hit $300 Thousand</h6>
 						<Tip
 							tipType={this.state.tripleTip}
-							onClickTip={this.tipSelectionHandler} />
+							onClickTip={this.tipSelectionHandler}
+							onClickLine2={this.handleLineSelect2} />
 					</div>
 				</div>
 				<div>
 					<h5>Your ticket details</h5>
-					<h6>Total ${ this.state.totalPrice }</h6>
-					<h6>{ this.state.lineName }, { this.state.totalLines } lines ${ this.state.linesPrice }</h6>
+					<h6>{ this.state.tipType }, ${ this.state.currentTipSelection }</h6>
+					<h6>Superball, { this.state.totalSuperballLines } lines ${ this.state.linesPrice }</h6>
+					<h6>Hit, { this.state.totalHitLines } lines ${ this.state.totalHitLines }</h6>
+					<h4>Total ${ this.state.totalPrice }</h4>
 					<button className="button" onClick={this.updateStatus}>Buy now</button>
 				</div>
 			</div>
@@ -119,28 +120,104 @@ class BuyATip extends React.Component {
 	}
 
 	renderResult () {
+		var generateMoreDraws = this.state.moreDraws.map((item, index) => {
+			return (
+				<li key={index}>
+					<div className="button" onClick={this.incDraw}>{ index + 1 }</div>
+					<div>{ item }</div>
+				</li>
+				
+			)
+		})
 
 		return (
 			<div>
 				<h5>Check your ticket, choose your draw(s) and then confirm purchase</h5>
 				<h6>Your Selection</h6>
 				<h6>{ this.state.tipType }, ${ this.state.totalPrice }</h6>
+				<h6>{ this.state.totalGhettoLines } Lines Ghetto</h6>
+				<h6>{ this.state.totalSuperballLines } Lines Superball</h6>
+				<h6>{ this.state.totalHitLines } Lines Hit</h6>
 				<button
 					className="button"
 					onClick={this.updateStatus}
 				>
 					Click here to change your dip selection.
 				</button>
+				<h3>Choose the draw you want to play<br />or click both to play twice a week</h3>
+				<button className="button">Next draw, Wednesdays</button>
+				<button className="button">Saturday</button>
+				<div>
+					<h3>Want more draws?</h3>
+					<ul className="menu">
+						{ generateMoreDraws }
+					</ul>
+				</div>
+				<hr />
+				<h5>Summary</h5>
+				<h6>{ this.state.tipType }, ${ this.state.currentTipSelection }</h6>
+				<h6>Superball, { this.state.totalSuperballLines } lines ${ this.state.linesPrice }</h6>
+				<h6>Hit, { this.state.totalHitLines } lines ${ this.state.totalHitLines }</h6>
+				<h6>Number of draws, { this.state.numberOfDraws }</h6>
+				<hr />
+				<h4>Total ${ this.state.totalPrice * this.state.numberOfDraws }</h4>
+				<button className="button">Confirm purchase</button>
 			</div>
 		)
 	}
 
+	incDraw (e) {
+		var a = parseInt(e.target.innerHTML)
+		this.setState({
+			numberOfDraws: a
+		})
+	}
+
+	updateTotalPrice (a, b, c) {
+		var p1 = parseFloat(a)
+		var p2 = parseFloat(b)
+		var p3 = parseFloat(c)
+		return p1 + p2 + p3
+	}
+
+	updateStatus () {
+		this.setState({
+			gameMode: !(this.state.gameMode)
+		})
+	}
+
+	tipSelectionHandler (e) {
+		var value = e.target.value
+		var name = e.target.dataset.tip
+		var ghetto = e.target.dataset.ghetto
+		var superball = e.target.dataset.superball
+		var hit = e.target.dataset.hit
+
+		this.setState({
+			currentTipSelection: value,
+			tipType: name,
+			totalHitLines: 0,
+			linesPrice: 0,
+			totalGhettoLines: ghetto,
+			totalSuperballLines: superball,
+			totalHitLines: hit,
+			totalPrice: this.updateTotalPrice(value, 0, 0)
+		})
+	}
+
 	handleLineSelect (type, lines, price) {
 		this.setState({
-			totalLines: lines,
+			totalSuperballLines: lines,
 			linesPrice: price,
 			lineName: type,
-			totalPrice: parseInt(this.state.totalPrice) + price
+			totalPrice: this.updateTotalPrice(this.state.currentTipSelection, this.state.totalHitLines, price)
+		})
+	}
+
+	handleLineSelect2 (lines) {
+		this.setState({
+			totalHitLines: lines,
+			totalPrice: this.updateTotalPrice(this.state.currentTipSelection, lines, this.state.linesPrice)
 		})
 	}
 }
