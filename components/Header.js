@@ -10,17 +10,18 @@ class Header extends Component {
 		return (
 			<div>
 				<div>
-					<Link to="/">Ghetto</Link>
+					<h1><Link to="/">Ghetto</Link></h1>
 					{ ' ' }
 					{ loggedIn ?
 						<span>
 							<strong>Hi { name }, you have ${ wallet }</strong>
 							{ ' ' }
-							<button onClick={() => logout(wallet)}>Log out</button>
+							<button onClick={() => logout()}>Log out</button>
 						</span> :
 						<button onClick={() => login()}>Login</button>
 					}
 				</div>
+				<hr />
 				<Navigation />
 			</div>
 		)

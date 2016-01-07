@@ -6,7 +6,7 @@ class Superball extends Component {
 		return (
 			<div>
 				<hr />
-				<h4>Ghetto Superball</h4>
+				<h2>Ghetto Superball</h2>
 				<ul>
 					<li><Link to="/ghetto/buy-a-tip">Buy a tip</Link></li>
 					<li><Link to="/ghetto/bookmarks">Bookmarks</Link></li>

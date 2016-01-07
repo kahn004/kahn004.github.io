@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class Home extends Component {
 	render () {
 		return (
-			<h3>Home</h3>
+			<div>
+				<hr />
+				<h2>Superball Imagine</h2>
+				<h3>This Saturday $6 million</h3>
+				<Link to="/ghetto/buy-a-tip">Play now</Link>
+			</div>
 		)
 	}
 }

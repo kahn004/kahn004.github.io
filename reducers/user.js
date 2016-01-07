@@ -1,29 +1,37 @@
 import constants from '../constants'
 
-const initialState = {
-	name: 'Sam',
-	loggedIn: false,
-	wallet: 0
-}
-
 // just a dummy login/logout helper
-function update (state = initialState, action) {
+function update (state = {}, action) {
 	switch (action.type) {
 		case constants.LOGIN:
 			return {
-				name: state.name,
-				loggedIn: action.loggedIn,
-				wallet: state.wallet
+				...state,
+				name: 'Sam',
+				loggedIn: true,
+				wallet: toDecimal(14)
 			}
 		case constants.LOGOUT:
 			return {
-				name: state.name,
-				loggedIn: action.loggedIn,
-				wallet: action.balance
+				...state,
+				loggedIn: false
+			}
+		case constants.SUBSTRACT:
+			if ((state.wallet - action.amount) > 0) {
+				return {
+					...state,
+					wallet: toDecimal(state.wallet - action.amount)
+				}	
+			} else {
+				alert('not enough balance')
+				return state
 			}
 		default:
 			return state
 	}
 }
 
-module.exports = update
+function toDecimal (n) {
+	return parseFloat(n).toFixed(2)
+}
+
+export default update

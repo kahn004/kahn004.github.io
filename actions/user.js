@@ -7,12 +7,18 @@ function login () {
 	}
 }
 
-function logout (n) {
+function logout () {
 	return {
 		type: constants.LOGOUT,
-		loggedIn: false,
-		balance: n
+		loggedIn: false
 	}
 }
 
-module.exports = { login, logout }
+function substract (n) {
+	return {
+		type: constants.SUBSTRACT,
+		amount: n
+	}
+}
+
+module.exports = { login, logout, substract }
