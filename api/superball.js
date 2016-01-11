@@ -2,10 +2,13 @@ const superball = {
 	gameMode: true,
 	tipSelected: false,
 	selectedTip: '',
-	selectedTipPrice: parseFloat(0).toFixed(2),
+	selectedTipPrice: toDecimal(0),
 	totalGhettoLines: 0,
 	totalSuperballLines: 0,
+	totalSuperballLinesPrice: toDecimal(0),
 	totalHitLines: 0,
+	totalHitLinesPrice: toDecimal(0),
+	totalPrice: toDecimal(0),
 	luckyTip: {
 		name: 'Lucky Tip',
 		tips: [4.8, 6, 9, 12],
@@ -30,6 +33,10 @@ const superball = {
 			hit: [2, 4, 2, 2]
 		}
 	},
+}
+
+function toDecimal (n) {
+	return parseFloat(n).toFixed(2)
 }
 
 export default superball

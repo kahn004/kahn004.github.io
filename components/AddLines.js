@@ -18,9 +18,15 @@ class AddLines extends Component {
 			hitNums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 		}
 	}
-	buttonMapper (arry) {
+	buttonMapper (arry, task = null) {
 		const map = arry.map((item, i) =>
-			<button key={i}>
+			<button
+				key={i}
+				onClick={() => {
+					if (task !== null) {
+						task(item)	
+					}	
+				}}>
 				{ item }
 			</button>
 		)
@@ -31,15 +37,15 @@ class AddLines extends Component {
 			return (
 				<div>
 					<h5>1. Choose how many lines you want to play</h5>
-					{ this.buttonMapper(this.state.superballLines) }
-					<h5>2. Choose one Supernall number for all lines</h5>
+					{ this.buttonMapper(this.state.superballLines, this.props.onAddSuperball) }
+					<h5>2. Choose one Superball number for all lines</h5>
 					{ this.buttonMapper(this.state.superballNums) }
 				</div>
 			)
 		} else {
 			return (
 				<div>
-					<h5>Choose one Supernall number for all lines</h5>
+					<h5>Choose one Superball number for all lines</h5>
 					{ this.buttonMapper(this.state.superballNums) }
 				</div>
 			)
@@ -49,7 +55,7 @@ class AddLines extends Component {
 		return (
 			<div>
 				<h5>Choose how many lines you want to add</h5>
-				{ this.buttonMapper(this.state.hitNums) }
+				{ this.buttonMapper(this.state.hitNums, this.props.onAddHit) }
 			</div>
 		)
 	}
@@ -71,7 +77,7 @@ class AddLines extends Component {
 			case 'Lucky Tip':
 				return (
 					<div>
-						<h4>Would you like to add Supernall or Hit?</h4>
+						<h4>Would you like to add Superball or Hit?</h4>
 						<button onClick={() => this.handleClick('superball')}>Superball | Extra $0.60 per line</button>
 						{ ' ' }
 						<button onClick={() => this.handleClick('hit')}>Hit | Extra $1.00 per line</button>
@@ -82,7 +88,7 @@ class AddLines extends Component {
 			case 'Power Tip':
 				return (
 					<div>
-						<h4>Would you like to change Supernall or add Hit?</h4>
+						<h4>Would you like to change Superball or add Hit?</h4>
 						<button onClick={() => this.handleClick('superball')}>Superball | Change</button>
 						{ ' ' }
 						<button onClick={() => this.handleClick('hit')}>Hit | Extra $1.00 per line</button>
@@ -93,7 +99,7 @@ class AddLines extends Component {
 			case 'Tripple Tip':
 				return (
 					<div>
-						<h4>Would you like to change Supernall or Hit?</h4>
+						<h4>Would you like to change Superball or Hit?</h4>
 						<button onClick={() => this.handleClick('superball')}>Superball | Change</button>
 						{ ' ' }
 						<button onClick={() => this.handleClick('hit')}>Hit | Change</button>
@@ -111,7 +117,9 @@ class AddLines extends Component {
 }
 
 AddLines.propTypes ={
-	tip: PropTypes.string.isRequired
+	tip: PropTypes.string.isRequired,
+	onAddSuperball: PropTypes.func,
+	onAddHit: PropTypes.func.isRequired
 }
 
 export default AddLines

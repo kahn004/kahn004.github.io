@@ -14,6 +14,9 @@ class SuperballBuyATip extends Component {
 		this.renderResult = this.renderResult.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.toDecimal = this.toDecimal.bind(this)
+		this.handleAddSuperballLines = this.handleAddSuperballLines.bind(this)
+		this.handleAddHitLines = this.handleAddHitLines.bind(this)
+		this.updateTotalPrice = this.updateTotalPrice.bind(this)
 
 		this.state = superballApi
 	}
@@ -26,19 +29,47 @@ class SuperballBuyATip extends Component {
 		this.setState({ gameMode: !(this.state.gameMode) })
 	}
 	handleChange (e) {
+		var value = this.toDecimal(e.target.value)
 		this.setState({
 			tipSelected: true,
 			selectedTip: e.target.dataset.tip,
-			selectedTipPrice: this.toDecimal(e.target.value),
+			selectedTipPrice: value,
 			totalGhettoLines: e.target.dataset.ghetto,
 			totalSuperballLines: e.target.dataset.superball,
+			totalSuperballLinesPrice: 0,
 			totalHitLines: e.target.dataset.hit,
+			totalHitLinesPrice: 0,
+			totalPrice: this.updateTotalPrice(value, 0, 0)
 		})
+	}
+	handleAddSuperballLines (item) {
+		var value = this.toDecimal(item * .6)
+		this.setState({
+			totalSuperballLines: item,
+			totalSuperballLinesPrice: value,
+			totalPrice: this.updateTotalPrice(this.state.selectedTipPrice, value, this.state.totalHitLinesPrice)
+		})
+	}
+	handleAddHitLines (item) {
+		var value = this.toDecimal(item)
+		this.setState({
+			totalHitLines: item,
+			totalHitLinesPrice: value,
+			totalPrice: this.updateTotalPrice(this.state.selectedTipPrice, this.state.totalSuperballLinesPrice, value)
+		})	
 	}
 	toDecimal (n) {
 		return parseFloat(n).toFixed(2)
 	}
+	updateTotalPrice (tipPrice, superballPrice, hitPrice) {
+		var price1 = parseFloat(tipPrice)
+		var price2 = parseFloat(superballPrice)
+		var price3 = parseFloat(hitPrice)
+		var total = price1 + price2 + price3
+		return total.toFixed(2)
+	}
 	renderTips () {
+		const { loggedIn } = this.props
 		return (
 			<div>
 				<h3>Buy a tip</h3>
@@ -47,32 +78,58 @@ class SuperballBuyATip extends Component {
 					<Tip
 						tipType={this.state.luckyTip}
 						activeTip={this.state.selectedTip}
-						onChange={this.handleChange} />
+						onChange={this.handleChange}
+						onAddSuperballLines={this.handleAddSuperballLines}
+						onAddHitLines={this.handleAddHitLines} />
 					<Tip
 						tipType={this.state.powerTip}
 						activeTip={this.state.selectedTip}
-						onChange={this.handleChange} />
+						onChange={this.handleChange}
+						onAddSuperballLines={this.handleAddSuperballLines}
+						onAddHitLines={this.handleAddHitLines} />
 					<Tip
 						tipType={this.state.trippleTip}
 						activeTip={this.state.selectedTip}
-						onChange={this.handleChange} />
+						onChange={this.handleChange}
+						onAddSuperballLines={this.handleAddSuperballLines}
+						onAddHitLines={this.handleAddHitLines} />
 				</div>
 				<div>
 					<h4>Your ticket details</h4>
+					{ this.state.tipSelected ?
+						<p>
+							{ this.state.selectedTip }
+							{ ' ' }
+							${ this.state.selectedTipPrice }
+						</p> :
+						null
+					}
+					{ this.state.totalSuperballLinesPrice > 0 ?
+						<p>
+							Superball { this.state.totalSuperballLines } Lines
+							{ ' ' }
+							${ this.state.totalSuperballLinesPrice }
+						</p> :
+						null
+					}
+					{ this.state.totalHitLinesPrice > 0 ?
+						<p>
+							Hit { this.state.totalHitLines } Lines
+							{ ' ' }
+							${ this.state.totalHitLinesPrice }
+						</p> :
+						null
+					}
 					<p>
-						{ this.state.tipSelected ?
-							<span>
-								{ this.state.selectedTip }
-								{ ' ' }
-								${ this.state.selectedTipPrice }
-							</span> :
-							null
+						<strong>TOTAL: ${this.state.totalPrice}</strong>
+					</p>
+					<button onClick={() => {
+						if (loggedIn) {
+							this.updateStatus()	
+						} else {
+							alert('Please login')
 						}
-					</p>
-					<p>
-						<strong>TOTAL: ${this.state.selectedTipPrice}</strong>
-					</p>
-					<button onClick={this.updateStatus} disabled={!this.state.selectedTipPrice}>Buy now</button>
+					}} disabled={!this.state.tipSelected}>Buy now</button>
 				</div>
 			</div>
 		)
@@ -81,15 +138,73 @@ class SuperballBuyATip extends Component {
 		const { substract } = this.props
 		return (
 			<div>
-				<h3>Result</h3>
-				<button onClick={this.updateStatus}>Click here to change your tip selection</button>
-				<button onClick={() => substract(this.state.selectedTipPrice)}>Confirm purchase</button>
+				<p>Check your ticket, choose your draw(s) and then confirm purchase</p>
+				<div style={{backgroundColor: 'yellow'}}>
+					<h3>Your Selection</h3>
+					<hr />
+					<p>
+						{ this.state.selectedTip }
+						{ ' ' }
+						${ this.state.selectedTipPrice }
+					</p>
+					<p>{ this.state.totalGhettoLines } Lines Ghetto</p>
+					{ this.state.totalSuperballLinesPrice > 0 ?
+						<p>{ this.state.totalSuperballLines } Lines Superball</p> : null }
+					{ this.state.totalHitLinesPrice > 0 ?
+						<p>{ this.state.totalHitLines } Lines Hit</p> : null }
+					<hr />
+					<button onClick={this.updateStatus}>Click here to change your tip selection</button>
+				</div>
+				<div>
+					<p>Choose the draw you want to play or click both to play twice a week <a href="#">Need help?</a></p>
+					<ul>
+						<li>
+							<input id="draw-wed" type="checkbox" defaultChecked />
+							<label htmlFor="draw-wed">Wednesday</label>
+						</li>
+						<li>
+							<input id="draw-sat" type="checkbox" />
+							<label htmlFor="draw-sat">Saturday</label>
+						</li>
+					</ul>
+					<p>Want more draws?</p>
+					<hr />
+					<h3>Summary</h3>
+					<p>
+						{ this.state.selectedTip }
+						{ ' ' }
+						${ this.state.selectedTipPrice }
+					</p>
+					{ this.state.totalSuperballLinesPrice > 0 ?
+						<p>
+							Superball { this.state.totalSuperballLines } Lines
+							{ ' ' }
+							${ this.state.totalSuperballLinesPrice }
+						</p> :
+						null
+					}
+					{ this.state.totalHitLinesPrice > 0 ?
+						<p>
+							Hit { this.state.totalHitLines } Lines
+							{ ' ' }
+							${ this.state.totalHitLinesPrice }
+						</p> :
+						null
+					}
+					<p>
+						Number of draws 1
+					</p>
+					<p>
+						<strong>TOTAL: ${this.state.totalPrice}</strong>
+					</p>
+					<button onClick={() => substract(this.state.totalPrice)}>Confirm purchase</button>
+				</div>
 			</div>
 		)
 	}
 }
 
 export default connect(
-	null,
+	state => ({ loggedIn: state.user.loggedIn }),
 	{ substract }
 )(SuperballBuyATip)

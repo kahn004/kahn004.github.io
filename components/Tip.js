@@ -45,7 +45,9 @@ class Tip extends Component {
 				<ul>{ tipOptions }</ul>
 				{ this.state.addLinesEnabled && activeTip === tipType.name ?
 					<AddLines
-						tip={tipType.name} /> : null }
+						tip={tipType.name}
+						onAddSuperball={this.props.onAddSuperballLines}
+						onAddHit={this.props.onAddHitLines} /> : null }
 				
 			</div>
 		)
@@ -55,7 +57,9 @@ class Tip extends Component {
 Tip.propTypes = {
 	activeTip: PropTypes.string.isRequired,
 	tipType: PropTypes.object.isRequired,
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired,
+	onAddSuperballLines: PropTypes.func,
+	onAddHitLines: PropTypes.func.isRequired
 }
 
 export default Tip
