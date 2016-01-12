@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { substract } from '../../actions/user'
 import Tip from '../../components/Tip'
+import AddDraws from '../../components/AddDraws'
 import superballApi from '../../api/superball'
 
 class SuperballBuyATip extends Component {
@@ -17,6 +18,7 @@ class SuperballBuyATip extends Component {
 		this.handleAddSuperballLines = this.handleAddSuperballLines.bind(this)
 		this.handleAddHitLines = this.handleAddHitLines.bind(this)
 		this.updateTotalPrice = this.updateTotalPrice.bind(this)
+		this.updateNumberOfDraws = this.updateNumberOfDraws.bind(this)
 
 		this.state = superballApi
 	}
@@ -67,6 +69,11 @@ class SuperballBuyATip extends Component {
 		var price3 = parseFloat(hitPrice)
 		var total = price1 + price2 + price3
 		return total.toFixed(2)
+	}
+	updateNumberOfDraws (n) {
+		this.setState({
+			totalDraws: n
+		})
 	}
 	renderTips () {
 		const { loggedIn } = this.props
@@ -145,7 +152,7 @@ class SuperballBuyATip extends Component {
 					<p>
 						{ this.state.selectedTip }
 						{ ' ' }
-						${ this.state.selectedTipPrice }
+						${ this.state.totalPrice }
 					</p>
 					<p>{ this.state.totalGhettoLines } Lines Ghetto</p>
 					{ this.state.totalSuperballLinesPrice > 0 ?
@@ -156,19 +163,7 @@ class SuperballBuyATip extends Component {
 					<button onClick={this.updateStatus}>Click here to change your tip selection</button>
 				</div>
 				<div>
-					<p>Choose the draw you want to play or click both to play twice a week <a href="#">Need help?</a></p>
-					<ul>
-						<li>
-							<input id="draw-wed" type="checkbox" defaultChecked />
-							<label htmlFor="draw-wed">Wednesday</label>
-						</li>
-						<li>
-							<input id="draw-sat" type="checkbox" />
-							<label htmlFor="draw-sat">Saturday</label>
-						</li>
-					</ul>
-					<p>Want more draws?</p>
-					<hr />
+					<AddDraws onSelectDraws={this.updateNumberOfDraws} />
 					<h3>Summary</h3>
 					<p>
 						{ this.state.selectedTip }
@@ -192,10 +187,10 @@ class SuperballBuyATip extends Component {
 						null
 					}
 					<p>
-						Number of draws 1
+						Number of draws { this.state.totalDraws }
 					</p>
 					<p>
-						<strong>TOTAL: ${this.state.totalPrice}</strong>
+						<strong>TOTAL: ${this.state.totalPrice * this.state.totalDraws}</strong>
 					</p>
 					<button onClick={() => substract(this.state.totalPrice)}>Confirm purchase</button>
 				</div>

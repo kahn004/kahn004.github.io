@@ -9,6 +9,7 @@ const superball = {
 	totalHitLines: 0,
 	totalHitLinesPrice: toDecimal(0),
 	totalPrice: toDecimal(0),
+	totalDraws: 1,
 	luckyTip: {
 		name: 'Lucky Tip',
 		tips: [4.8, 6, 9, 12],
