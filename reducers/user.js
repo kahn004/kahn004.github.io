@@ -17,6 +17,7 @@ function update (state = {}, action) {
 			}
 		case constants.SUBSTRACT:
 			if ((state.wallet - action.amount) > 0) {
+				alert('purchase successful! You have a balance of $' + toDecimal(state.wallet - action.amount))
 				return {
 					...state,
 					wallet: toDecimal(state.wallet - action.amount)
