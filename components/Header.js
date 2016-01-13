@@ -9,8 +9,8 @@ import Navigation from './Navigation'
 class Header extends Component {
 	render () {
 		const { name, loggedIn, wallet, login, logout } = this.props
-		const classes = classnames('ghetto-header', {
-			'ghetto-header-loggedin': loggedIn
+		const classes = classnames('header', {
+			'header-loggedin': loggedIn
 		})
 		return (
 			<div className={classes}>

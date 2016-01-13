@@ -190,7 +190,7 @@ class SuperballBuyATip extends Component {
 						Number of draws { this.state.totalDraws }
 					</p>
 					<p>
-						<strong>TOTAL: ${this.state.totalPrice * this.state.totalDraws}</strong>
+						<strong>TOTAL: ${ this.toDecimal(this.state.totalPrice * this.state.totalDraws) }</strong>
 					</p>
 					<button onClick={() => substract(this.state.totalPrice)}>Confirm purchase</button>
 				</div>

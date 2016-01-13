@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 class Home extends Component {
 	render () {
 		return (
-			<div>
+			<div className="aux">
 				<hr />
 				<h2>Superball Imagine</h2>
 				<h3>This Saturday $6 million</h3>

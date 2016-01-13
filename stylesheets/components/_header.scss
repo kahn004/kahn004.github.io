@@ -1,7 +1,9 @@
-.ghetto-header {
+.header {
 	background: red;
+	padding: 20px;
+	transition: background .5s ease-in-out;
 
-	&.ghetto-header-loggedin {
+	&.header-loggedin {
 		background: orange;
 	}
 }

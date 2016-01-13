@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 class Superball extends Component {
 	render () {
 		return (
-			<div>
+			<div className="aux">
 				<hr />
 				<h2>Ghetto Superball</h2>
 				<ul>
