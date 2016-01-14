@@ -12,6 +12,14 @@ class Header extends Component {
 		const classes = classnames('header', {
 			'header-loggedin': loggedIn
 		})
+		const styles = {
+			branding: {
+				position: 'relative'
+			},
+			brandingTitle: {
+				color: '#fff'
+			}
+		}
 		return (
 			<div className={classes}>
 				<div>

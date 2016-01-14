@@ -33,20 +33,32 @@ class App extends Component {
 							fontSize: '100%',
 							transition: 'font-size .5s ease-in-out'
 						},
-						mediaQueries: {
+						'h1, h2, h3': {
+							fontFamily: 'sans-serif'
+						},
+						ul: {
+							margin: 0,
+						    padding: 0,
+						    listStyle: 'none'
+						},
+						'ul li': {
+					    	display: 'block',
+					    	margin: '10px 20px 0 0'
+					    },
+					    mediaQueries: {
 							'(min-width: 550px)': {
 								html: {
 									fontSize: '120%'
-								}
+								},
+								'ul li': {
+							    	display: 'inline-block'
+							    }
 							},
 							'(min-width: 1200px)': {
 								html: {
 									fontSize: '140%'
 								}
 							}
-						},
-						'h1, h2, h3': {
-							fontFamily: 'sans-serif'
 						}
 					}} />
 					<Header />
