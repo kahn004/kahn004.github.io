@@ -18,7 +18,7 @@ class App extends Component {
 			},
 			containerFixed: {
 				margin: '0 auto',
-				maxWidth: 900
+				maxWidth: 968
 			}
 		}
 		return (
