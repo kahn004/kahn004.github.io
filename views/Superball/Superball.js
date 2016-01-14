@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import Radium from 'radium'
 
 class Superball extends Component {
 	render () {
+		var styles = {
+			test: {
+				background: 'blue',
+				'@media (min-width: 1200px)': {
+					background: 'yellow'
+				}
+			}
+		}
 		return (
 			<div className="aux">
 				<hr />
@@ -18,4 +27,4 @@ class Superball extends Component {
 	}
 }
 
-export default Superball
+export default Radium(Superball)
