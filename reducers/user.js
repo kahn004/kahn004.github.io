@@ -23,7 +23,7 @@ function update (state = {}, action) {
 					wallet: toDecimal(state.wallet - action.amount)
 				}	
 			} else {
-				alert('not enough balance')
+				alert('not enough balance yo')
 				return state
 			}
 		default:
