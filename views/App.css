@@ -1,0 +1,53 @@
+/* custom properties */
+:root {
+	--fontSize: 100px;
+	--mainColor: #ccc;
+	--highlightColor: hwb(190, 35%, 20%);
+}
+
+/* custom selectors */
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+:--heading { margin-top: 0; }
+
+/* custom media queries */
+@custom-media --viewport-medium (width <= 50rem);
+
+body {
+	line-height: calc(var(--fontSize) * .3);
+	margin: 0;
+}
+
+a:hover { color: gray(255, 50%) }
+a:active { color: rebeccapurple }
+
+/* font stuff */
+h2 {
+	font-variant-caps: small-caps;
+}
+
+.bg {
+	background: var(--mainColor);
+}
+
+.text {
+	color: pink;
+}
+
+:global .lol {
+	color: var(--highlightColor);
+	font-size: var(--fontSize);
+}
+
+@media (--viewport-medium) {
+	:global .lol {
+		font-size: 30px;
+	}	
+}
+
+/* filters */
+:global .blur {
+	filter: blur(4px);
+}
+:global .sepia {
+	filter: sepia(.8);
+}

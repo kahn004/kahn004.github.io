@@ -22,8 +22,6 @@ import {
 } from './views'
 import reducers from './reducers'
 
-require('./stylesheets/main.scss')
-
 const reducer = combineReducers(Object.assign({}, reducers, {
 	routing: routeReducer
 }))

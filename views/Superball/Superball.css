@@ -1,0 +1,17 @@
+.bg {
+	background: hotpink;
+	transition: background .2s ease-in-out;
+}
+
+.text {
+	/*color: white;*/
+	composes: text from './../App.css';
+}
+
+.text-a {
+	color: red;
+}
+
+/*.text {
+	color: red;
+}*/

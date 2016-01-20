@@ -1,23 +1,18 @@
+import styles from './Superball.css'
+// import styles from '../App.css'
+import CSSModules from 'react-css-modules'
+
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import Radium from 'radium'
 
 class Superball extends Component {
 	render () {
-		var styles = {
-			test: {
-				background: 'blue',
-				'@media (min-width: 1200px)': {
-					background: 'yellow'
-				}
-			}
-		}
 		return (
-			<div className="aux">
+			<div className="bg" styleName="bg">
 				<hr />
-				<h2>Ghetto Superball</h2>
+				<h2 styleName="text text-a">Ghetto Superball</h2>
 				<ul>
-					<li><Link to="/ghetto/buy-a-tip">Buy a tip</Link></li>
+					<li><Link className="lol" to="/ghetto/buy-a-tip">Buy a tip</Link></li>
 					<li><Link to="/ghetto/bookmarks">Bookmarks</Link></li>
 					<li><Link to="/ghetto/select-your-own">Select your own</Link></li>
 				</ul>
@@ -27,4 +22,4 @@ class Superball extends Component {
 	}
 }
 
-export default Radium(Superball)
+export default CSSModules(Superball, styles, { allowMultiple: true })

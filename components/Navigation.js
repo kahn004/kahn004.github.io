@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import Radium from 'radium'
 
 class Navigation extends Component {
 	render () {
@@ -46,4 +45,4 @@ class Navigation extends Component {
 	}
 }
 
-export default Radium(Navigation)
+export default Navigation
